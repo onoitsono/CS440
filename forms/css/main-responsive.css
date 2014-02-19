@@ -1,0 +1,357 @@
+/**
+ * @file main-responsive.css
+ *
+ * OSU Standard Responsive Stylesheet
+ *
+ * Central Web Services
+ * Oregon State University
+ *
+ */
+/* though not specifically in a media query, this helps to make all images in
+the page scale while keeping the same ratio. This could used to be in bootstrap
+but was removed in version 2.0.4 */
+/* changed from 60 */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+img {
+  height: auto;
+}
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+  }
+  #osu-top-hat .logo,
+  #main-menu {
+    display: none;
+  }
+  #content {
+    padding-right: 0;
+  }
+  #osu-top-hat {
+    background-color: #bb4200;
+    background-image: -moz-linear-gradient(top, #c34500, #ae3d00);
+    background-image: -ms-linear-gradient(top, #c34500, #ae3d00);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c34500), to(#ae3d00));
+    background-image: -webkit-linear-gradient(top, #c34500, #ae3d00);
+    background-image: -o-linear-gradient(top, #c34500, #ae3d00);
+    background-image: linear-gradient(top, #c34500, #ae3d00);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c34500', endColorstr='#ae3d00', GradientType=0);
+    height: auto;
+    border-bottom: none;
+    text-align: left;
+    padding-left: 10px;
+  }
+  #osu-top-hat a.tag {
+    margin-left: .5em;
+    float: none;
+  }
+  #osu-top-hat ul.menu {
+    display: block;
+    margin-top: 5px;
+  }
+  #osu-top-hat ul.menu li {
+    padding-bottom: .4em;
+  }
+  #osu-top-hat ul.menu li a {
+    padding: 5px 1px;
+  }
+  #osu-top-hat ul.menu li:hover,
+  #osu-top-hat ul.menu li:active,
+  #osu-top-hat ul.menu li:focus {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  #osu-top-hat .utility,
+  #osu-top-hat form.search {
+    display: none;
+  }
+  .live-feeds-block .rss-icon {
+    margin-top: -47px;
+  }
+  .mobile-header {
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+  }
+  .classic #header {
+    height: 30px;
+  }
+  #header h1 {
+    padding: 4px 8px 2px 5px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  #alt-tag {
+    display: inline !important;
+    font-size: 140%;
+    font-weight: bold;
+  }
+  #mobile-search-link {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 1%;
+    background: transparent;
+  }
+  #mobile-search-link:active,
+  #mobile-search-link:focus,
+  #mobile-search-link:hover {
+    background: #555;
+  }
+  #page-title,
+  .classic #page-title,
+  .marine #page-title {
+    padding: 5px 8px 5px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .content,
+  .classic .content,
+  .classic #block-system-main > .content {
+    padding: .4em;
+  }
+}
+@media (max-width: 540px) {
+  /* Feature Story Edits */
+  #block-views-feature-story-block .view-feature-story .views-field-field-caption {
+    position: static;
+    background: #f4f2ec;
+    /* @todo: we might need to add a height, to avoid jumps */
+  
+  }
+}
+@media (min-width: 481px) and (max-width: 540px) {
+  #osu-top-hat .menu .first + .leaf {
+    display: none;
+  }
+}
+/* Here goes stuff we want for small tablets, but NOT for phones */
+@media (min-width: 481px) and (max-width: 767px) {
+  #osu-top-hat {
+    height: 80px;
+  }
+  #osu-top-hat ul.menu {
+    margin-left: -24px;
+  }
+  #osu-top-hat ul.menu li.leaf {
+    padding: 0 .3em;
+  }
+  .classic #header {
+    height: auto;
+  }
+  #header h1 {
+    padding-top: .1em;
+  }
+}
+@media (min-width: 700px) and (max-width: 767px) {
+  #osu-top-hat ul.menu {
+    margin-right: 30px;
+    /* top hat adjust better under certain conditions */
+  
+  }
+}
+@media (max-width: 767px) {
+  /*#pre-footer,
+    #pre-content,*/
+  #admin-menu,
+  #main-menu {
+    display: none;
+  }
+  html body.admin-menu {
+    margin-top: 0 !important;
+    /*remove top margin along with menu*/
+  
+  }
+  .m-icon-link {
+    background: #c34500;
+    padding: 0 6px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+  #osu-top-hat .search-terms,
+  #osu-top-hat .search-terms:focus {
+    width: 160px;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+  #osu-top-hat .form-type-checkbox {
+    float: right;
+    margin: 0 -80px 0 0;
+  }
+  #osu-top-hat ul.menu li a.campaign {
+    background-image: none;
+    padding-left: .2em;
+  }
+  #osu-top-hat #osu-search-top-hat-form {
+    float: left;
+  }
+  #main-menu,
+  #alt-tag {
+    display: none;
+  }
+  #alt-menu {
+    display: block;
+    margin: .3em;
+  }
+  #alt-menu a {
+    float: right;
+    color: #fff;
+    text-decoration: none;
+  }
+  #alt-menu a:active,
+  #alt-menu a:hover,
+  #alt-menu a:focus {
+    color: #fff;
+    background: #555;
+  }
+  #alt-menu i {
+    margin-left: 10px;
+  }
+  #alt-menu #toggle-main-menu {
+    float: left;
+  }
+  #alt-menu #toggle-main-menu i {
+    margin: 0 10px 0 0;
+  }
+  #main-menu .menu li,
+  #main-menu .nice-menu > li {
+    float: none;
+  }
+  #main-menu .menu li a,
+  #main-menu .nice-menu > li > a {
+    display: block;
+    border-bottom: 1px dotted #666;
+  }
+  #main-menu .menu li:last-child a,
+  #main-menu .nice-menu > li:last-child > a {
+    border-bottom: none;
+  }
+  #main-menu .nice-menu > li > a:hover ul,
+  #main-menu .nice-menu > li:hover ul,
+  #main-menu .nice-menu li:hover ul,
+  #main-menu .nice-menu li ul {
+    display: none !important;
+  }
+  #main-menu .nice-menu > li.menuparent > a,
+  .classic #main-menu .nice-menu > li.menuparent > a {
+    background-image: none;
+  }
+  /* CLASSIC variant only edits */
+  .classic #main-menu .nice-menu > li.menuparent:hover > a,
+  .classic #main-menu .nice-menu > li.menuparent > a:hover,
+  .classic #main-menu .nice-menu > li.menuparent > a:active,
+  .classic #main-menu .nice-menu > li.menuparent > a:focus {
+    background-image: none;
+    background-color: #eee;
+  }
+  /* Science variant edits */
+  .science #main-menu .nice-menu > li + li,
+  .science #main-menu .menu li + li {
+    border-left: none;
+  }
+  /* Feature Story Rotating Edits here */
+  .view-feature-story.view-display-id-block .fs-row .views-field-field-caption {
+    height: auto;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+  }
+  .view-feature-story.view-display-id-block .fs-row:hover .views-field-field-caption {
+    height: auto;
+  }
+  /* Feature Story Edits */
+  #block-views-feature-story-block .view-feature-story .views-field-field-caption {
+    position: static;
+  }
+  .view-feature-story .side-controls {
+    top: 26%;
+  }
+}
+@media (min-width: 768px) {
+  #main-menu {
+    display: block !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  #admin-menu-wrapper > .dropdown:last-child {
+    display: none;
+  }
+  #osu-top-hat .utility {
+    display: none;
+  }
+  #alt-menu,
+  #alt-tag {
+    display: none;
+  }
+  #osu-top-hat ul.menu {
+    margin: 0.8em 0 0 -2em;
+  }
+  #osu-top-hat ul.menu li.leaf {
+    padding: 0 .2em;
+  }
+  ul.quicktabs-tabs li {
+    display: block;
+  }
+  ul.quicktabs-tabs li a {
+    display: block;
+    filter: none;
+    /* removes filter from ie9 */
+  
+  }
+  ul.quicktabs-tabs.quicktabs-style-basic {
+    height: auto;
+  }
+}
+@media (max-width: 979px) {
+  body:before {
+    display: none;
+  }
+}
+@media (min-width: 980px) {
+  #alt-menu,
+  #alt-tag {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  #osu-top-hat .wrapper4 {
+    width: 1200px;
+  }
+  
+  #alt-menu,
+  #alt-tag {
+    display: none;
+  }
+}

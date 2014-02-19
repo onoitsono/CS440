@@ -1,0 +1,24 @@
+.notFilled, .urgent {
+  border-color: #A77 !important;
+  background-color: #FEE;
+}
+
+.notFilled:focus, .urgent:focus {
+  border-color: #A55 !important;
+}
+
+.hasTooltip + span {
+    display:none;
+}
+
+.showTooltip {
+    background-color: black;
+    color: white;
+    padding:5px;
+    margin-top: 1.3em;
+    position: absolute;
+    max-width: 200px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}

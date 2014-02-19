@@ -1,0 +1,11 @@
+AuthType Basic
+AuthName "CN Login"
+
+AuthBasicProvider ldap
+AuthzLDAPAuthoritative on
+AuthLDAPURL "ldap://tss4.tss.oregonstate.edu:389/dc=tss,dc=oregonstate,dc=edu?sAMAccountName"
+
+AuthLDAPBindDN "bzbind@tss.oregonstate.edu"
+AuthLDAPBindPassword "Tri%Oli73"
+
+require valid-user
