@@ -209,7 +209,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 
   <!-- Site Name -->
   <div id='header' class='row-fluid'>
-    <h1><a href='http://oregonstate.edu/is/tss/cn/online-forms'>Community Network Forms</h1>
+    <h1><a href='http://oregonstate.edu/is/tss/cn/online-forms'>SUPER HAPPY FUN TIME!</h1>
   </div>
  
     
