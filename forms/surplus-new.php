@@ -283,7 +283,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
 <?php
-	//get user account info
+	/*//get user account info
 	$reqinfo = get_userinfo($_SERVER['AUTH_USER'], "sAMAccountName"); // LDAP query for requestor info
 	$drn = $reqinfo['displayname']; // returns either nothing or "display name" depending on whether there's a value for the displayname; drn stands for "default requestor name"
     $dre = $reqinfo['mail']; // default requestor email
@@ -295,17 +295,17 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	
 	// Hidden fields
 	echo '<input type="hidden" id="requestor_login" name="requestor_login" value="' . $_SERVER['AUTH_USER'] . '">';
-	echo '<input type="hidden" id="first_name" name="first_name" value="' . $first_name . '">';
+	echo '<input type="hidden" id="first_name" name="first_name" value="' . $first_name . '">';*/
 ?>
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="name">Name<span class="form-required" title="This field is required.">*</span></label>
-	<?php echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
+	<?php //echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
 </div>
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
-	<?php echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
+	<?php //echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
 </div>
 
 <!--<div class="form-item webform-component webform-component-textfield">
