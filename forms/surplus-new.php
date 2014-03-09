@@ -323,17 +323,6 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
     $description = $defaultitem[1];
     $label = $category . ' - ' . $description;
 ?>
-<?php
-  $defaultitemlist = array(array('Rainfall', 'Min'), 
-                           array('Peripheral', 'Monitor'),
-                           array('Accessory', 'Cables'), 
-                           array('Peripheral', 'Hard drive (Internal or External)'));
-
-  foreach ($defaultitemlist as $defaultitem) {
-    $category = $defaultitem[0];
-    $description = $defaultitem[1];
-    $label = $category . ' - ' . $description;
-?>
       <option category="<?php echo $category; ?>" desc="<?php echo $description; ?>" value="<?php echo $description; ?>"><?php echo $label; ?></option>
 <?php } ?>
     </select>
