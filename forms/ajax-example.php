@@ -16,7 +16,7 @@ $age = mysql_real_escape_string($age);
 $sex = mysql_real_escape_string($sex);
 $wpm = mysql_real_escape_string($wpm);
 	//build query
-$query = "SELECT * FROM newpdata WHERE 'YR--MODAHRMN' = '201101010000'";
+$query = "SELECT * FROM newpdata WHERE 'datetime' = '201101010000'";
 //if(is_numeric($age))
 //	$query .= " AND age <= $age";
 //if(is_numeric($wpm))
@@ -36,7 +36,7 @@ $display_string .= "</tr>";
 // Insert a new row in the table for each person returned
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
-	$display_string .= "<td>$row[DIR]</td>";
+	$display_string .= "<td>$row[datetime]</td>";
 // 	$display_string .= "<td>$row[YR--MODAHRMN]</td>";
 // 	$display_string .= "<td>$row[SPD]</td>";
 // 	$display_string .= "<td>$row[GUS]</td>";
