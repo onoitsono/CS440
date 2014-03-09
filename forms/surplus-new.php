@@ -89,7 +89,7 @@
 	<link rel="shortcut icon" href="http://oregonstate.edu/is/sites/all/themes/osu_standard/favicon.ico" type="image/vnd.microsoft.icon" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Hardware Pick-up Request | Community Network</title>
+    <title>CS 440 | NOAA Weather Database</title>
  
   <!-- CSS -->
 	<style type="text/css" media="all">
@@ -209,7 +209,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 
   <!-- Site Name -->
   <div id='header' class='row-fluid'>
-    <h1><a href='http://oregonstate.edu/is/tss/cn/online-forms'>SUPER HAPPY FUN TIME!</h1>
+    <h1><a href='http://oregonstate.edu/is/tss/cn/online-forms'>NOAA Weather Database</h1>
   </div>
  
     
@@ -237,7 +237,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
             <!-- Pre-content -->
             
             <!-- Main Content -->
-            <h2 class="title" id="page-title">Community Network Hardware Pick-up Request</h2>
+            <h2 class="title" id="page-title">NOAA Database Request</h2>
               
               
               <div id='content' >
@@ -254,26 +254,18 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 
 	<?php echo $message; ?>
 
-    <p class="descr-text">Please fill out the form below to surplus OSU-owned computer hardware that is no longer useful to your department.  
-    	By submitting the form below, a ticket will be created and CN will arrange for a technician to pick up the requested hardware from the building and room listed.
+    <p class="descr-text">Please fill out the form below with your request from the database.
     </p>
     <p class="descr-text">
-    	<strong>Only these Items will be picked up:</strong><br>
+    	<strong>The following requests are possible:</strong><br>
     	<table style="background-color:#fff;width:45%">
     		<tr style="vertical-align:top;">
     			<td>
     				<ul>
-    					<li>Computer Towers</li>
-    					<li>Monitors</li>
-    					<li>Hard Drives (external and internal)</li>
-    					<li>Keyboards and Mice</li>
-    				</ul>
-    			</td>
-    			<td>
-    				<ul>
-    					<li>Laptops</li>
-    					<li>Docking Stations</li>
-    					<li>Computer Cables</li>
+    					<li>Temperatures (High and low)</li>
+    					<li>Rainfall</li>
+    					<li>Pressure</li>
+    					<li>Other</li>
     				</ul>
     			</td>
     		</tr>
@@ -282,6 +274,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
+<!-- 
 <?php
 	/*//get user account info
 	$reqinfo = get_userinfo($_SERVER['AUTH_USER'], "sAMAccountName"); // LDAP query for requestor info
@@ -297,16 +290,24 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	echo '<input type="hidden" id="requestor_login" name="requestor_login" value="' . $_SERVER['AUTH_USER'] . '">';
 	echo '<input type="hidden" id="first_name" name="first_name" value="' . $first_name . '">';*/
 ?>
+ -->
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="name">Name<span class="form-required" title="This field is required.">*</span></label>
-	<?php /* echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">'; */?>
+<<<<<<< HEAD
+<!-- 	<?php echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?> -->
+=======
+	<?php //echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
+>>>>>>> 9dc5f2c1e69803d55aa23b780d412c2d3d6bf733
 </div>
-
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
-	<?php /* echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">'; */?>
+<<<<<<< HEAD
+<!-- 	<?php echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?> -->
+=======
+	<?php //echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
+>>>>>>> 9dc5f2c1e69803d55aa23b780d412c2d3d6bf733
 </div>
 
 <!--<div class="form-item webform-component webform-component-textfield">
