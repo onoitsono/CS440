@@ -17,10 +17,10 @@ $sex = mysql_real_escape_string($sex);
 $wpm = mysql_real_escape_string($wpm);
 	//build query
 $query = "SELECT * FROM newpdata WHERE 'YR--MODAHRMN' = '$age'";
-if(is_numeric($age))
-	$query .= " AND age <= $age";
-if(is_numeric($wpm))
-	$query .= " AND wpm <= $wpm";
+//if(is_numeric($age))
+//	$query .= " AND age <= $age";
+//if(is_numeric($wpm))
+//	$query .= " AND wpm <= $wpm";
 	//Execute query
 $qry_result = mysql_query($query) or die(mysql_error());
 
