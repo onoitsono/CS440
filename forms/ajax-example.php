@@ -40,7 +40,7 @@ if($query_result == null){
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
 	$display_string .= "<td>$row[DIR]</td>";
- 	$display_string .= "<td>$row[date]</td>";
+ 	$display_string .= "<td>$row[DATE]</td>";
  	$display_string .= "<td>$row[USAF]</td>";
 // 	$display_string .= "<td>$row[GUS]</td>";
 	$display_string .= "</tr>";
