@@ -28,7 +28,7 @@ $qry_result = mysql_query($query) or die(mysql_error());
 $display_string = "<table>";
 $display_string .= "<tr>";
 $display_string .= "<th>Name</th>";
-$display_string .= "<th>Age</th>";
+$display_string .= "<th>Date</th>";
 $display_string .= "<th>Sex</th>";
 $display_string .= "<th>WPM</th>";
 $display_string .= "</tr>";
@@ -36,10 +36,10 @@ $display_string .= "</tr>";
 // Insert a new row in the table for each person returned
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
-	$display_string .= "<td>$row[name]</td>";
-	$display_string .= "<td>$row[age]</td>";
-	$display_string .= "<td>$row[sex]</td>";
-	$display_string .= "<td>$row[wpm]</td>";
+	$display_string .= "<td>$row[DIR]</td>";
+	$display_string .= "<td>$row[YR--MODAHRMN]</td>";
+	$display_string .= "<td>$row[SPD]</td>";
+	$display_string .= "<td>$row[GUS]</td>";
 	$display_string .= "</tr>";
 	
 }
