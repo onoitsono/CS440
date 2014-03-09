@@ -16,7 +16,7 @@ $age = mysql_real_escape_string($age);
 $sex = mysql_real_escape_string($sex);
 $wpm = mysql_real_escape_string($wpm);
 	//build query
-$query = "SELECT * FROM pdxdata WHERE 'DIR' = '100'";
+$query = "SELECT * FROM pdxdata WHERE 'DIR' = 100";
 //if(is_numeric($age))
 //	$query .= " AND age <= $age";
 //if(is_numeric($wpm))
