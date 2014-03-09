@@ -36,8 +36,8 @@ $display_string .= "</tr>";
 // Insert a new row in the table for each person returned
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
-// 	$display_string .= "<td>$row[DIR]</td>";
-	$display_string .= "<td>$row[YR--MODAHRMN]</td>";
+	$display_string .= "<td>$row[DIR]</td>";
+// 	$display_string .= "<td>$row[YR--MODAHRMN]</td>";
 // 	$display_string .= "<td>$row[SPD]</td>";
 // 	$display_string .= "<td>$row[GUS]</td>";
 	$display_string .= "</tr>";
