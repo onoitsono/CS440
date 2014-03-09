@@ -34,9 +34,12 @@ $display_string .= "<th>WPM</th>";
 $display_string .= "</tr>";
 
 // Insert a new row in the table for each person returned
+if($query_result == null){
+	echo "Nothing returned";
+}
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
-	$display_string .= "<td>$row[USAF]</td>";
+	$display_string .= "<td>$row</td>";
  	$display_string .= "<td>$row[date]</td>";
 // 	$display_string .= "<td>$row[SPD]</td>";
 // 	$display_string .= "<td>$row[GUS]</td>";
