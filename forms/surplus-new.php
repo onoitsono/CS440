@@ -310,14 +310,21 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 <div class="form-item webform-component webform-component-select"> 
 		  <!-- ITEMS -->
 	<div class='sectionTable' id='sectionItems'>
-	<div class='sectionHeading'>Items</div>
+	<div class='sectionHeading'>Weather</div>
 
 	<select class='selector input_id_Item_Row' id='selectItemType'>
 <?php
-  $defaultitemlist = array(array('Computer', 'Tower/Desktop'),
-                           array('Computer', 'Laptop'), 
-                           array('Accessory', 'Keyboard or Mouse'),
-                           array('Peripheral', 'Docking Station'), 
+  $defaultitemlist = array(array('Temperature', 'Max'),
+                           array('Temperature', 'Min'), 
+                           array('Temperature', 'Average'));
+
+  foreach ($defaultitemlist as $defaultitem) {
+    $category = $defaultitem[0];
+    $description = $defaultitem[1];
+    $label = $category . ' - ' . $description;
+?>
+<?php
+  $defaultitemlist = array(array('Rainfall', 'Min'), 
                            array('Peripheral', 'Monitor'),
                            array('Accessory', 'Cables'), 
                            array('Peripheral', 'Hard drive (Internal or External)'));
