@@ -422,6 +422,7 @@ function ajaxFunction(){
 </div>
 </div>
 </form>  
+<div id='ajaxDiv'>Your result will display here</div>
 </div>
 </div>
   </div>
