@@ -427,22 +427,22 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
           <div class='span4 contact'>
             <h3>Information Services</h3>
             <div class="specific-contact">
-              <p><a href="http://oregonstate.edu/is">Information Services Home Page</a><br /><a href="http://oregonstate.edu/is/organization">Organization</a></p>
+              <p><a href="http://oregonstate.edu/">Information Services Home Page</a><br /><a href="http://eecs.oregonstate.edu/">Oregon State School of EECS</a></p>
             </div>
             <div class="general-contact">
               <a href="http://oregonstate.edu/copyright">Copyright</a>
-              &copy;2013              Oregon State University<br />
-              <a href="http://oregonstate.edu/disclaimer">Disclaimer</a>
+              &copy;2014              Oregon State University<br />
+             <!-- <a href="http://oregonstate.edu/disclaimer">Disclaimer</a> -->
             </div>
              <div class="social-media"></div>
           </div>
-          <div class='span4'>
+          <!-- <div class='span4'>
             <h3>Community Network</h3>
             <div class="specific-contact">
               <p><a href="http://oregonstate.edu/is/tss/cn">Community Network Home Page</a><br />
               541-737-8787</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
