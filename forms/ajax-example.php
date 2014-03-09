@@ -4,7 +4,7 @@ $dbuser = "cs440_onok";
 $dbpass = "3216";
 $dbname = "cs440_onok";
 	//Connect to MySQL Server
-mysql_connect($dbhost, $dbuser, $dbpass);
+mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
