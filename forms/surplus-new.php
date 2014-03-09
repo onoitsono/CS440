@@ -272,9 +272,15 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
     	</table>
     </p>
 	
+	<form name='weatherform'>
+	Location: <select id='location'>
+<option value="pdxdata">Portland</option>
+<option value="newpdata">Newport</option>
+</select> 
+<!-- 
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
-<!-- 
+<!~~ 
 <?php
 	/*//get user account info
 	$reqinfo = get_userinfo($_SERVER['AUTH_USER'], "sAMAccountName"); // LDAP query for requestor info
@@ -290,7 +296,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	echo '<input type="hidden" id="requestor_login" name="requestor_login" value="' . $_SERVER['AUTH_USER'] . '">';
 	echo '<input type="hidden" id="first_name" name="first_name" value="' . $first_name . '">';*/
 ?>
- -->
+ ~~>
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="name">Name<span class="form-required" title="This field is required.">*</span></label>
@@ -300,15 +306,15 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
 <?php echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
 
-<!--<div class="form-item webform-component webform-component-textfield">
+<!~~<div class="form-item webform-component webform-component-textfield">
 	<label for="email">Email<span class="form-required" title="This field is required.">*</span></label>
 	<?php //echo '<input type="hidden" id="email" name="email" value="" size="70" class="email-autocomplete">';
 			echo '<input type="hidden" id="email" name="email" value=" ' .$dre. ' " size="70" >';
 	?>
-</div>-->
+</div>~~>
 
 <div class="form-item webform-component webform-component-select"> 
-		  <!-- ITEMS -->
+		  <!~~ ITEMS ~~>
 	<div class='sectionTable' id='sectionItems'>
 	<div class='sectionHeading'>Weather</div>
 
@@ -330,7 +336,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 		<input type='button' class='input_id_Item_Row' style='float:right' onclick="AddToList('id_Item_Row', 'Item_Return_Type', '', 'Item_Description', '', 'Inventory_ID', '', 'Serial_Number', ''); return false" value="Add Custom Item">
 		<br><br>
 
-		 <!-- 
+		 <!~~ 
 <table class='itemlisttable' border='0' cellspacing='0' style='width:100%' id='itemsTable'>
 			  <tr>	
 					<th width='8%'><a class="hasTooltip">Return</a><span>
@@ -365,11 +371,13 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 			  
 		<?php } ?>
 		</table>
- -->
+ ~~>
 	</div>
 
 
 </div>
+
+ -->
 
 
 <!-- <div class="form-item webform-component webform-component-textfield">
@@ -385,6 +393,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 		<textarea id="notes" name="notes" cols="3" rows"5" class="form-textarea"></textarea>
 	</div>
 </div> -->
+
 
 <div class="form-actions form-wrapper" id="edit-actions">
 

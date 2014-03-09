@@ -36,9 +36,9 @@ function ajaxFunction(){
  // server script.
  var age = document.getElementById('age').value;
  var wpm = document.getElementById('wpm').value;
- var sex = document.getElementById('sex').value;
+ var sex = document.getElementById('location').value;
  var queryString = "?age=" + age ;
- queryString +=  "&wpm=" + wpm + "&sex=" + sex;
+ queryString +=  "&wpm=" + wpm + "&location=" + sex;
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 
