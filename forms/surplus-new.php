@@ -429,6 +429,13 @@ function ajaxFunction(){
       ajaxDisplay.innerHTML = ajaxRequest.responseText;
    }
  }
+ var location = document.getElementById('location').value;
+ var temp = document.getElementById('temp').value;
+ var queryString = "?location=" + location ;
+ queryString +=  "&temp=" + temp; //+ "&location=" + sex;
+ ajaxRequest.open("GET", "ajax-example.php" + 
+                              queryString, true);
+ ajaxRequest.send(null); 
  }
 	</script>
 	<input type="button" onclick='ajaxFunction()' value="Submit SQL Query" >
