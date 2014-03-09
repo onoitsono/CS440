@@ -8,15 +8,15 @@ mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
-$age = $_GET['age'];
-$sex = $_GET['sex'];
-$wpm = $_GET['wpm'];
+$location = $_GET['location'];
+$date = $_GET['date'];
+$temp = $_GET['temp'];
 	// Escape User Input to help prevent SQL Injection
 $age = mysql_real_escape_string($age);
 $sex = mysql_real_escape_string($sex);
 $wpm = mysql_real_escape_string($wpm);
 	//build query
-$query = "SELECT * FROM newpdata WHERE date = 201101010000";
+$query = "SELECT * FROM $location WHERE TEMP>=$temp";
 //if(is_numeric($age))
 //	$query .= " AND age <= $age";
 //if(is_numeric($wpm))
@@ -27,10 +27,10 @@ $qry_result = mysql_query($query) or die(mysql_error());
 	//Build Result String
 $display_string = "<table>";
 $display_string .= "<tr>";
-$display_string .= "<th>Name</th>";
+$display_string .= "<th>Location Code</th>";
 $display_string .= "<th>Date</th>";
-$display_string .= "<th>Sex</th>";
-$display_string .= "<th>WPM</th>";
+$display_string .= "<th>Temp</th>";
+//$display_string .= "<th></th>";
 $display_string .= "</tr>";
 
 // Insert a new row in the table for each person returned
@@ -39,9 +39,9 @@ if($query_result == null){
 }
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
-	$display_string .= "<td>$row[DIR]</td>";
+	$display_string .= "<td>$row[USAF]</td>";
  	$display_string .= "<td>$row[DATE]</td>";
- 	$display_string .= "<td>$row[USAF]</td>";
+ 	$display_string .= "<td>$row[TEMP]</td>";
 // 	$display_string .= "<td>$row[GUS]</td>";
 	$display_string .= "</tr>";
 	
