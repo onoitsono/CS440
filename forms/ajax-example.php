@@ -62,6 +62,7 @@ if($queryoption == "avg"){
 // 	return;
 }else if($queryoption == "datebased"){
 	$startdate = $_GET['startdate']
+	echo "Start Date: " .$startdate. "<br />";
 	$starte = explode('/',$startdate);
 	if(strlen($starte[0])==1){
 		$month = "0"+$starte[0];
