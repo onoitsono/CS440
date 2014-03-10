@@ -297,10 +297,21 @@ Please choose an option: <select id="queryoption">
 	<option value="max">Max Temperature</option>
 	<option value="min">Min Temperature</option>
 	<option value="avg">Average Temperature</option>
+	<option value="maxstate">Max Temperature for State</option>
 	<option value="datebased">Date Based</option>
+</select>
+<br />
+Temp:<input type='text' id='temp' /> <br />
+<br />
+If you chose date-based, pick a sub-option:
+<select id="datequeryoption">
+	<option value="maxd">Max Temperature</option>
+	<option value="mind">Min Temperature</option>
+	<option value="avgd">Average Temperature</option>
 	<!-- <option value="maxstate">Max Temperature for State</option> -->
 </select>
-Temp:<input type='text' id='temp' /> <br />
+<br />
+Please specify starting and end dates for date-based queries:
 <br />
 Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
 End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
@@ -459,12 +470,13 @@ function ajaxFunction(){
  var queryoption = document.getElementById('queryoption').value;
  var startdate = document.getElementById('startdate').value;
  var enddate = document.getElementById('enddate').value;
+ var datequery = document.getElementById('datequeryoption').value;
  
  var queryString = "?location=" + location ;
  queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
- alert(queryString);
+ //alert(queryString);
  queryString += "&startdate=" + startdate + "&enddate=" + enddate;
- alert(queryString);
+ queryString += "&datequery=" + datequery;
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 

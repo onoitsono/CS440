@@ -12,6 +12,11 @@ mysql_select_db($dbname) or die(mysql_error());
 $queryoption = $_GET['queryoption'];
 $queryoption = mysql_real_escape_string($queryoption);
 echo "The query option is " .$queryoption. "<br />";
+// $startdate = $_GET['startdate'];
+// $startdate = mysql_real_escape_string($startdate);
+// $enddate = $_GET['enddate'];
+// $enddate = mysql_real_escape_string($enddate);
+
 
 if($queryoption == "avg"){
 	$location = $_GET['location'];
@@ -43,34 +48,32 @@ if($queryoption == "avg"){
 		echo "and $row[DATE]<br />";
 	}
 	return;
-// }else if($queryoption == "maxstate"){
-// 	$query = "SELECT * FROM Locations";
-// 	$qry_result = mysql_query($query) or die(mysql_error());
-// 	$row = mysql_fetch_array($qry_result)
-// 	$locationstring = "$row[table_name]";
-// 	echo "$locationstring<br />";
-// 	while($row = mysql_fetch_array($qry_result)){
-// 		$locationstring += ", $row[table_name]";
-// 	}
-// 	echo "$locationstring<br />";
-// 	$query = "SELECT * FROM $locationstring WHERE TEMP = (SELECT MAX(TEMP) FROM $location)";
-// 	$qry_result = mysql_query($query) or die(mysql_error());
-// 	echo "The highest temperature in the state was $row[TEMP] on $row[DATE]<br />";
-// 	while($row = mysql_fetch_array($qry_result)){
-// 		echo "and $row[DATE]<br />";
-// 	}
-// 	return;
+}else if($queryoption == "maxstate"){
+	$query = "SELECT * FROM Locations";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($qry_result);
+	$locationstring = "$row[table_name]";
+	echo "$locationstring<br />";
+	while($row = mysql_fetch_array($qry_result)){
+		$locationstring += ", $row[table_name]";
+	}
+	echo "$locationstring<br />";
+	$query = "SELECT * FROM $locationstring WHERE TEMP = (SELECT MAX(TEMP) FROM $location)";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	echo "The highest temperature in the state was $row[TEMP] on $row[DATE]<br />";
+	while($row = mysql_fetch_array($qry_result)){
+		echo "and $row[DATE]<br />";
+	}
+	return;
 }else if($queryoption == "datebased"){
 	$startdate = $_GET['startdate'];
+	$startdate = mysql_real_escape_string($startdate);
+	echo "Start: " .$startdate. "<br />";
 	$starte = explode('/',$startdate);
-	if(strlen($starte[0])==1){
-		$month = "0"+$starte[0];
-	}
-	if(strlen($starte[1])==1){
-		$day = "0"+$starte[1];
-	}
-	$startdate = $year + $month + $day + "0000";
+	$startdate = $starte[2] . $starte[0] . $starte[1] . "0000";
 	$enddate = $_GET['enddate'];
+	$enddate = mysql_real_escape_string($enddate);
+	echo "End: " .$enddate. "<br />";
 	$ende = explode('/',$enddate);
 	if(strlen($ende[0])==1){
 		$month2 = "0"+$ende[0];
@@ -78,7 +81,41 @@ if($queryoption == "avg"){
 	if(strlen($ende[1])==1){
 		$day2 = "0"+$ende[1];
 	}
-	$enddate = $year2 + $month2 + $day2 + "0000";
+	$enddate = $ende[2] . $ende[0] . $ende[1] . "2359";
+	
+	$datequery = $_GET['datequery'];
+	$datequery = mysql_real_escape_string($datequery);
+	if($datequery == "maxd"){
+		$location = $_GET['location'];
+		$location = mysql_real_escape_string($location);
+		$query = "SELECT * FROM $location WHERE TEMP = (SELECT MAX(TEMP) AS MaxTemp FROM $location) AND date >= $startdate AND date <= $enddate";
+		$qry_result = mysql_query($query) or die(mysql_error());
+		$row = mysql_fetch_array($qry_result);
+		echo "The highest temperature for $startdate to $enddate was $row[TEMP] on $row[DATE]<br />";
+		while($row = mysql_fetch_array($qry_result)){
+			echo "and $row[DATE]<br />";
+		}
+	}else if($datequery == "mind"){
+		$location = $_GET['location'];
+		$location = mysql_real_escape_string($location);
+		$query = "SELECT * FROM $location WHERE TEMP = (SELECT MIN(TEMP) AS MinTemp FROM $location) AND date >= $startdate AND date <= $enddate";
+		$qry_result = mysql_query($query) or die(mysql_error());
+		$row = mysql_fetch_array($qry_result);
+		echo "The lowest temperature for $startdate to $enddate was $row[TEMP] on $row[DATE]<br />";
+		while($row = mysql_fetch_array($qry_result)){
+			echo "and $row[DATE]<br />";
+		}
+	}else if($datequery == "avgd"){
+		$location = $_GET['location'];
+		$location = mysql_real_escape_string($location);
+		$query = "SELECT AVG(TEMP) AS AverageTemp FROM $location WHERE date >= $startdate AND date <= $enddate";
+		$qry_result = mysql_query($query) or die(mysql_error());
+		$row = mysql_fetch_array($qry_result);
+		echo "The average temperature for $startdate to $enddate was $row[AverageTemp]<br />";
+	}
+	
+	
+	
 	echo "Start date: " .$startdate. " and End Date: " .$enddate. "<br />";
 	return;
 }else{
