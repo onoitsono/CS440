@@ -8,13 +8,25 @@ mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
+$queryoption = $_GET['queryoption'];
+
+if($queryoption == 'max'){
+	$location = $_GET['location'];
+	$location = mysql_real_escape_string($location);
+	$query = "SELECT AVG(TEMP) AS AverageTemp FROM $location";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($qry_result);
+	echo "The averate temperature is $row[AverageTemp]";
+	break;
+}
+
 $location = $_GET['location'];
 $date = $_GET['date'];
 $temp = $_GET['temp'];
 	// Escape User Input to help prevent SQL Injection
-$age = mysql_real_escape_string($age);
-$sex = mysql_real_escape_string($sex);
-$wpm = mysql_real_escape_string($wpm);
+$location = mysql_real_escape_string($location);
+$date = mysql_real_escape_string($date);
+$temp = mysql_real_escape_string($temp);
 	//build query
 $query = "SELECT * FROM $location WHERE TEMP >= $temp";
 //if(is_numeric($age))

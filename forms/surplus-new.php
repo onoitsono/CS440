@@ -274,6 +274,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	
 	<form name='weatherform'>
 	<?php
+	//dynamically populate the location dropdown based on our table
 	$dbhost = "mysql.cs.orst.edu";
 	$dbuser = "cs440_onok";
 	$dbpass = "3216";
@@ -282,18 +283,22 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 	mysql_select_db($dbname) or die(mysql_error());
-	$query = "SELECT * FROM Locations";
+	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
 	$qry_result = mysql_query($query) or die(mysql_error());
 	
 	echo "Location: <select id='location'>";
 	 while($row = mysql_fetch_array($qry_result)){
 	 	echo "<option value=$row[table_name]>$row[location_name]</option>";
 	 }
-// <option value="pdxdata">Portland</option>
-// <option value="newpdata">Newport</option>
 	echo "</select>";
 ?>
-Find temperatures greater than or equal to: <input type='text' id='temp' /> <br />
+
+Please choose an option: <select id="queryoption">
+<option value="max">Max Temperature</option>
+<option value="min">Min Temperature</option>
+<option value="avg">Average Temperature</option>
+</select>
+Temp:<input type='text' id='temp' /> <br />
 <br />
 <!-- 
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
@@ -447,8 +452,9 @@ function ajaxFunction(){
  }
  var location = document.getElementById('location').value;
  var temp = document.getElementById('temp').value;
+ var queryoption = document.getElementById('queryoption').value;
  var queryString = "?location=" + location ;
- queryString +=  "&temp=" + temp; //+ "&location=" + sex;
+ queryString +=  "&temp=" + temp; + "&queryoption=" + queryoption;
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 
