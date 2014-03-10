@@ -454,7 +454,7 @@ function ajaxFunction(){
  var temp = document.getElementById('temp').value;
  var queryoption = document.getElementById('queryoption').value;
  var queryString = "?location=" + location ;
- queryString +=  "&temp=" + temp; + "&queryoption=" + queryoption;
+ queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
  alert(queryString);
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
