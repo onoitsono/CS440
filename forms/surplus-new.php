@@ -294,9 +294,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 ?>
 
 Please choose an option: <select id="queryoption">
-<option value="max">Max Temperature</option>
-<option value="min">Min Temperature</option>
-<option value="avg">Average Temperature</option>
+	<option value="max">Max Temperature</option>
+	<option value="min">Min Temperature</option>
+	<option value="avg">Average Temperature</option>
 </select>
 Temp:<input type='text' id='temp' /> <br />
 <br />

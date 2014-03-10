@@ -8,9 +8,11 @@ mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
+	
 $queryoption = $_GET['queryoption'];
 $queryoption = mysql_real_escape_string($queryoption);
-echo "The query option is " . $queryoption . "<br />";
+echo "The query option is $queryoption <br />";
+
 if($queryoption == "max"){
 	$location = $_GET['location'];
 	$location = mysql_real_escape_string($location);
