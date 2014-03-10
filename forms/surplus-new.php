@@ -301,9 +301,9 @@ Please choose an option: <select id="queryoption">
 </select>
 Temp:<input type='text' id='temp' /> <br />
 <br />
-<input type="text" id="start-date" name="start-date" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
-<input type="text" id="end-date" name="end-date" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
-<!-- 
+<input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+<input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+<!--
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
 <!~~ 
@@ -456,13 +456,13 @@ function ajaxFunction(){
  var location = document.getElementById('location').value;
  var temp = document.getElementById('temp').value;
  var queryoption = document.getElementById('queryoption').value;
-//  var start-date = document.getElementById('start-date').value;
-//  var end-date = document.getElementById('end-date').value;
+ var startdate = document.getElementById('startdate').value;
+ var enddate = document.getElementById('enddate').value;
  var queryString = "?location=" + location ;
  queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
-//  alert(queryString);
-//  queryString += "&start-date=" + start-date + "&end-date=" + end-date;
-//  alert(queryString);
+ alert(queryString);
+ queryString += "&startdate=" + startdate + "&enddate=" + enddate;
+ alert(queryString);
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 
