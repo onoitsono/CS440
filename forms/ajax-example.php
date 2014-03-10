@@ -62,21 +62,21 @@ if($queryoption == "avg"){
 // 	return;
 }else if($queryoption == "datebased"){
 	$startdate = $_GET['startdate']
-	list($month, $day, $year) = explode('/',$startdate);
-	if(strlen($month)==1){
-		$month = "0"+$month;
+	$starte = explode('/',$startdate);
+	if(strlen($starte[0])==1){
+		$month = "0"+$starte[0];
 	}
-	if(strlen($day)==1){
-		$day = "0"+$day;
+	if(strlen($starte[1])==1){
+		$day = "0"+$starte[1];
 	}
 	$startdate = $year + $month + $day + "0000";
 	$enddate = $_GET['enddate']
-	list($month2, $day2, $year2) = explode('/',$enddate);
-	if(strlen($month2)==1){
-		$month2 = "0"+$month2;
+	$ende = explode('/',$enddate);
+	if(strlen($ende[0])==1){
+		$month2 = "0"+$ende[0];
 	}
-	if(strlen($day2)==1){
-		$day2 = "0"+$day2;
+	if(strlen($ende[1])==1){
+		$day2 = "0"+$ende[1];
 	}
 	$enddate = $year2 + $month2 + $day2 + "0000";
 	echo "Start date: " .$startdate. " and End Date: " .$enddate. "<br />";
