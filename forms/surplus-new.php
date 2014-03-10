@@ -285,13 +285,13 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	$query = "SELECT * FROM Locations";
 	$qry_result = mysql_query($query) or die(mysql_error());
 	
-	Location: <select id='location'>
+	echo "Location: <select id='location'>";
 	 while($row = mysql_fetch_array($qry_result)){
-	 	<option value="$row[table_name]">"$row[location_name]"</option>;
+	 	echo"<option value="$row[table_name]">"$row[location_name]"</option>";
 	 }
 // <option value="pdxdata">Portland</option>
 // <option value="newpdata">Newport</option>
-</select> 
+	echo" </select>":
 ?>
 Find temperatures greater than or equal to: <input type='text' id='temp' /> <br />
 <br />
