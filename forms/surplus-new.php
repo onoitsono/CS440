@@ -297,6 +297,7 @@ Please choose an option: <select id="queryoption">
 	<option value="max">Max Temperature</option>
 	<option value="min">Min Temperature</option>
 	<option value="avg">Average Temperature</option>
+	<option value="maxstate">Max Temperature for State</option>
 </select>
 Temp:<input type='text' id='temp' /> <br />
 <br />
@@ -455,7 +456,7 @@ function ajaxFunction(){
  var queryoption = document.getElementById('queryoption').value;
  var queryString = "?location=" + location ;
  queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
- alert(queryString);
+ //alert(queryString);
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 

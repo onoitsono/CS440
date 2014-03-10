@@ -27,9 +27,9 @@ if($queryoption == "avg"){
 	$query = "SELECT * FROM $location WHERE TEMP = (SELECT MAX(TEMP) AS MaxTemp FROM $location)";
 	$qry_result = mysql_query($query) or die(mysql_error());
 	$row = mysql_fetch_array($qry_result);
-	echo "The highest temperature was $row[TEMP] on $row[DATE]";
+	echo "The highest temperature was $row[TEMP] on $row[DATE]<br />";
 	while($row = mysql_fetch_array($qry_result)){
-		echo "$row[DATE]";
+		echo "and $row[DATE]<br />";
 	}
 	return;
 }else if($queryoption == "min"){
@@ -38,11 +38,25 @@ if($queryoption == "avg"){
 	$query = "SELECT * FROM $location WHERE TEMP = (SELECT MIN(TEMP) AS MinTemp FROM $location)";
 	$qry_result = mysql_query($query) or die(mysql_error());
 	$row = mysql_fetch_array($qry_result);
-	echo "The lowest temperature was $row[TEMP] on $row[DATE]";
+	echo "The lowest temperature was $row[TEMP] on $row[DATE]<br />";
 	while($row = mysql_fetch_array($qry_result)){
-		echo "$row[DATE]";
+		echo "and $row[DATE]<br />";
 	}
 	return;
+}else if($queryoption == "maxstate"){
+	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($qry_result)
+	$locationstring = "$row[location_name]";
+	while($row = mysql_fetch_array($qry_result)){
+		$locationstring += ", $row[location_name]";
+	}
+	$query = "SELECT * FROM $locationstring WHERE TEMP = (SELECT MAX(TEMP) FROM $location)";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	echo "The highest temperature in the state was $row[TEMP] on $row[DATE]<br />";
+	while($row = mysql_fetch_array($qry_result)){
+		echo "and $row[DATE]<br />";
+	}
 }
 
 $location = $_GET['location'];
