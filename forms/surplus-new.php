@@ -297,12 +297,13 @@ Please choose an option: <select id="queryoption">
 	<option value="max">Max Temperature</option>
 	<option value="min">Min Temperature</option>
 	<option value="avg">Average Temperature</option>
-	<option value="maxstate">Max Temperature for State</option>
+	<option value="datebased">Date Based</option>
+	<!-- <option value="maxstate">Max Temperature for State</option> -->
 </select>
 Temp:<input type='text' id='temp' /> <br />
 <br />
-<input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
-<input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
 <!--
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
@@ -458,6 +459,7 @@ function ajaxFunction(){
  var queryoption = document.getElementById('queryoption').value;
  var startdate = document.getElementById('startdate').value;
  var enddate = document.getElementById('enddate').value;
+ 
  var queryString = "?location=" + location ;
  queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
  alert(queryString);

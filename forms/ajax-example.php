@@ -60,6 +60,26 @@ if($queryoption == "avg"){
 // 		echo "and $row[DATE]<br />";
 // 	}
 // 	return;
+}else if($queryoption == "datebased"){
+	$startdate = $_GET['startdate']
+	list($month, $day, $year) = explode('/',$startdate);
+	if(strlen($month)==1){
+		$month = "0"+$month;
+	}
+	if(strlen($day)==1){
+		$day = "0"+$day;
+	}
+	$startdate = $year + $month + $day + "0000";
+	$enddate = $_GET['enddate']
+	list($month, $day, $year) = explode('/',$enddate);
+	if(strlen($month)==1){
+		$month = "0"+$month;
+	}
+	if(strlen($day)==1){
+		$day = "0"+$day;
+	}
+	$enddate = $year + $month + $day + "0000";
+	echo "Start date: " .$startdate. " and End Date: " .$enddate. "<br />";
 }else{
 	return;
 }
