@@ -291,7 +291,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	 }
 // <option value="pdxdata">Portland</option>
 // <option value="newpdata">Newport</option>
-	echo "</select>":
+	echo "</select>";
 ?>
 Find temperatures greater than or equal to: <input type='text' id='temp' /> <br />
 <br />
