@@ -61,8 +61,7 @@ if($queryoption == "avg"){
 // 	}
 // 	return;
 }else if($queryoption == "datebased"){
-	$startdate = $_GET['startdate']
-	echo "Start Date: " .$startdate. "<br />";
+	$startdate = $_GET['startdate'];
 	$starte = explode('/',$startdate);
 	if(strlen($starte[0])==1){
 		$month = "0"+$starte[0];
@@ -71,7 +70,7 @@ if($queryoption == "avg"){
 		$day = "0"+$starte[1];
 	}
 	$startdate = $year + $month + $day + "0000";
-	$enddate = $_GET['enddate']
+	$enddate = $_GET['enddate'];
 	$ende = explode('/',$enddate);
 	if(strlen($ende[0])==1){
 		$month2 = "0"+$ende[0];
