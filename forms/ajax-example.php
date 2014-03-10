@@ -8,7 +8,7 @@ mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
-	echo "We reached the end of connecting to the DB";
+
 $queryoption = $_GET['queryoption'];
 $queryoption = mysql_real_escape_string($queryoption);
 echo "The query option is " .$queryoption. "<br />";
@@ -43,23 +43,23 @@ if($queryoption == "avg"){
 		echo "and $row[DATE]<br />";
 	}
 	return;
-// }else if($queryoption == "maxstate"){
-// 	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
-// 	$qry_result = mysql_query($query) or die(mysql_error());
-// 	$row = mysql_fetch_array($qry_result)
-// 	$locationstring = "$row[location_name]";
-// 	echo "$locationstring<br />";
-// 	while($row = mysql_fetch_array($qry_result)){
-// 		$locationstring += ", $row[location_name]";
-// 	}
-// 	echo "$locationstring<br />";
-// 	$query = "SELECT * FROM $locationstring WHERE TEMP = (SELECT MAX(TEMP) FROM $location)";
-// 	$qry_result = mysql_query($query) or die(mysql_error());
-// 	echo "The highest temperature in the state was $row[TEMP] on $row[DATE]<br />";
-// 	while($row = mysql_fetch_array($qry_result)){
-// 		echo "and $row[DATE]<br />";
-// 	}
-// 	return;
+}else if($queryoption == "maxstate"){
+	$query = "SELECT * FROM Locations";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($qry_result)
+	$locationstring = "$row[table_name]";
+	echo "$locationstring<br />";
+	while($row = mysql_fetch_array($qry_result)){
+		$locationstring += ", $row[table_name]";
+	}
+	echo "$locationstring<br />";
+	$query = "SELECT * FROM $locationstring WHERE TEMP = (SELECT MAX(TEMP) FROM $location)";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	echo "The highest temperature in the state was $row[TEMP] on $row[DATE]<br />";
+	while($row = mysql_fetch_array($qry_result)){
+		echo "and $row[DATE]<br />";
+	}
+	return;
 }else{
 	return;
 }
