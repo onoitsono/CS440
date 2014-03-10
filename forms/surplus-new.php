@@ -459,7 +459,7 @@ function ajaxFunction(){
  var start-date = document.getElementById('start-date').value;
  var end-date = document.getElementById('end-date').value;
  var queryString = "?location=" + location ;
- queryString +=  "&temp=" + temp + "&queryoption=" + queryoption + "&start-date" + start-date + "&end-date" + end-date;
+ queryString +=  "&temp=" + temp + "&queryoption=" + queryoption + "&start-date=" + start-date + "&end-date=" + end-date;
 alert(queryString);
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
