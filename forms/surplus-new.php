@@ -273,10 +273,26 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
     </p>
 	
 	<form name='weatherform'>
+	<?php
+	$dbhost = "mysql.cs.orst.edu";
+	$dbuser = "cs440_onok";
+	$dbpass = "3216";
+	$dbname = "cs440_onok";
+	//Connect to MySQL Server
+	mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
+	//Select Database
+	mysql_select_db($dbname) or die(mysql_error());
+	$query = "SELECT * FROM Locations";
+	$qry_result = mysql_query($query) or die(mysql_error());
+	
 	Location: <select id='location'>
-<option value="pdxdata">Portland</option>
-<option value="newpdata">Newport</option>
+	 while($row = mysql_fetch_array($qry_result)){
+	 	<option value="$row[table_name]">"$row[location_name]"</option>;
+	 }
+// <option value="pdxdata">Portland</option>
+// <option value="newpdata">Newport</option>
 </select> 
+?>
 Find temperatures greater than or equal to: <input type='text' id='temp' /> <br />
 <br />
 <!-- 

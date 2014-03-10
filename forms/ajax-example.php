@@ -34,9 +34,9 @@ $display_string .= "<th>Temp</th>";
 $display_string .= "</tr>";
 
 // Insert a new row in the table for each person returned
-if($query_result == null){
-	echo "Nothing returned";
-}
+// if($query_result == null){
+// 	echo "Nothing returned";
+// }
 while($row = mysql_fetch_array($qry_result)){
 	$display_string .= "<tr>";
 	$display_string .= "<td>$row[USAF]</td>";
