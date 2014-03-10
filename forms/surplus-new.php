@@ -456,13 +456,13 @@ function ajaxFunction(){
  var location = document.getElementById('location').value;
  var temp = document.getElementById('temp').value;
  var queryoption = document.getElementById('queryoption').value;
- var start-date = document.getElementById('start-date').value;
- var end-date = document.getElementById('end-date').value;
+//  var start-date = document.getElementById('start-date').value;
+//  var end-date = document.getElementById('end-date').value;
  var queryString = "?location=" + location ;
  queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
- alert(queryString);
- queryString += "&start-date=" + start-date + "&end-date=" + end-date;
- alert(queryString);
+//  alert(queryString);
+//  queryString += "&start-date=" + start-date + "&end-date=" + end-date;
+//  alert(queryString);
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 
