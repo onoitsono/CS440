@@ -80,6 +80,7 @@ if($queryoption == "avg"){
 	}
 	$enddate = $year2 + $month2 + $day2 + "0000";
 	echo "Start date: " .$startdate. " and End Date: " .$enddate. "<br />";
+	return;
 }else{
 	return;
 }
