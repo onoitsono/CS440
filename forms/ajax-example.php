@@ -8,7 +8,7 @@ mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
 	//Select Database
 mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
-	
+	echo "We reached the end of connecting to the DB";
 $queryoption = $_GET['queryoption'];
 $queryoption = mysql_real_escape_string($queryoption);
 echo "The query option is " .$queryoption. "<br />";
