@@ -11,7 +11,7 @@ mysql_select_db($dbname) or die(mysql_error());
 	
 $queryoption = $_GET['queryoption'];
 $queryoption = mysql_real_escape_string($queryoption);
-echo "The query option is $queryoption <br />";
+echo "The query option is " .$queryoption. "<br />";
 
 if($queryoption == "max"){
 	$location = $_GET['location'];
@@ -20,7 +20,7 @@ if($queryoption == "max"){
 	$qry_result = mysql_query($query) or die(mysql_error());
 	$row = mysql_fetch_array($qry_result);
 	echo "The averate temperature is $row[AverageTemp]";
-	break;
+	return;
 }
 
 $location = $_GET['location'];
