@@ -10,7 +10,7 @@ mysql_select_db($dbname) or die(mysql_error());
 	// Retrieve data from Query String
 $queryoption = $_GET['queryoption'];
 
-if($queryoption == 'max'){
+if($queryoption == "max"){
 	$location = $_GET['location'];
 	$location = mysql_real_escape_string($location);
 	$query = "SELECT AVG(TEMP) AS AverageTemp FROM $location";
