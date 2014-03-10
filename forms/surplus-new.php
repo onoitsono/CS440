@@ -301,6 +301,8 @@ Please choose an option: <select id="queryoption">
 </select>
 Temp:<input type='text' id='temp' /> <br />
 <br />
+<input type="text" id="start-date" name="start-date" value="" size="35" maxlength="128" class="form-text required datepicker needdate"><br />
+<input type="text" id="end-date" name="end-date" value="" size="35" maxlength="128" class="form-text required datepicker needdate"><br />
 <!-- 
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
