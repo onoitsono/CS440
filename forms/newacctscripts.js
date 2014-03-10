@@ -78,25 +78,25 @@ jQuery(function($)
 		var newSelected = Math.round(dateSelected.getTime() / 1000 / 60 / 60 / 24);
 		var diff = newSelected - curr + 1;
 		//iterate through the days to check if there are weekend days
-		for (count = 0; count <= diff; count++)
-		{
-			var date = new Date((curr + count) * 60 * 60 * 24 * 1000);
-			var day = date.getDay();
-			if (day == 0 || day == 6) //sunday or saturday
-			{
-				diff--;
-			}
-		}
-		var errors = $(this).parent().children('div.error').length;
-		if (diff <= 3 && errors === 0)
-		{
-			var message = "<div class='error'>You have selected a date that provides less than three business days lead time for account creation. While we will make every effort to have the account created quickly, please follow up with us via phone at (541) 737-8787 (Option #2) after submitting the request if this is a rush.</div><br>";
-			$(this).parent().append(message);
-		}
-		else if (diff > 3 && errors !== 0)
-		{
-			$(this).parent().children('div.error').remove();
-		}
+		// for (count = 0; count <= diff; count++)
+// 		{
+// 			var date = new Date((curr + count) * 60 * 60 * 24 * 1000);
+// 			var day = date.getDay();
+// 			if (day == 0 || day == 6) //sunday or saturday
+// 			{
+// 				diff--;
+// 			}
+// 		}
+// 		var errors = $(this).parent().children('div.error').length;
+// 		if (diff <= 3 && errors === 0)
+// 		{
+// 			//var message = "<div class='error'>You have selected a date that provides less than three business days lead time for account creation. While we will make every effort to have the account created quickly, please follow up with us via phone at (541) 737-8787 (Option #2) after submitting the request if this is a rush.</div><br>";
+// 			$(this).parent().append(message);
+// 		}
+// 		else if (diff > 3 && errors !== 0)
+// 		{
+// 			$(this).parent().children('div.error').remove();
+// 		}
 	});
 
 	$(function(){
