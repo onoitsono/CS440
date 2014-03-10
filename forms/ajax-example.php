@@ -71,14 +71,14 @@ if($queryoption == "avg"){
 	}
 	$startdate = $year + $month + $day + "0000";
 	$enddate = $_GET['enddate']
-	list($month, $day, $year) = explode('/',$enddate);
-	if(strlen($month)==1){
-		$month = "0"+$month;
+	list($month2, $day2, $year2) = explode('/',$enddate);
+	if(strlen($month2)==1){
+		$month2 = "0"+$month2;
 	}
-	if(strlen($day)==1){
-		$day = "0"+$day;
+	if(strlen($day2)==1){
+		$day2 = "0"+$day2;
 	}
-	$enddate = $year + $month + $day + "0000";
+	$enddate = $year2 + $month2 + $day2 + "0000";
 	echo "Start date: " .$startdate. " and End Date: " .$enddate. "<br />";
 }else{
 	return;
