@@ -24,18 +24,24 @@ if($queryoption == "avg"){
 }else if($queryoption == "max"){
 	$location = $_GET['location'];
 	$location = mysql_real_escape_string($location);
-	$query = "SELECT date, MAX(TEMP) AS MaxTemp FROM $location GROUP BY date";
+	$query = "SELECT * FROM $location WHERE TEMP = (SELECT MAX(TEMP) AS MaxTemp FROM $location)";
 	$qry_result = mysql_query($query) or die(mysql_error());
 	$row = mysql_fetch_array($qry_result);
-	echo "The highest temperature was $row[MaxTemp] on $row[date]";
+	echo "The highest temperature was $row[TEMP] on $row[DATE]";
+	while($row = mysql_fetch_array($qry_result)){
+		echo "$row[DATE]";
+	}
 	return;
 }else if($queryoption == "min"){
 	$location = $_GET['location'];
 	$location = mysql_real_escape_string($location);
-	$query = "SELECT date, MIN(TEMP) AS MinTemp FROM $location GROUP BY date";
+	$query = "SELECT * FROM $location WHERE TEMP = (SELECT MIN(TEMP) AS MinTemp FROM $location)";
 	$qry_result = mysql_query($query) or die(mysql_error());
 	$row = mysql_fetch_array($qry_result);
-	echo "The lowest temperature was $row[MinTemp] on $row[date]";
+	echo "The lowest temperature was $row[TEMP] on $row[DATE]";
+	while($row = mysql_fetch_array($qry_result)){
+		echo "$row[DATE]";
+	}
 	return;
 }
 
