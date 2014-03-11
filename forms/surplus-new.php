@@ -298,11 +298,12 @@ Please choose an option: <select id="queryoption">
 	<option value="min">Min Temperature</option>
 	<option value="avg">Average Temperature</option>
 	<option value="snow">Find Snow Days</option>
+	<option value="datebased">All Information for Range (choose dates below)</option>
+	<option value="summary">Summary for Date Range</option>
 	<option disabled="disabled">----</option>
 	<option value="maxstate">Max Temperature for State</option>
 	<option value="minstate">Min Temperature for State</option>
 	<option disabled="disabled">----</option>
-	<option value="datebased">Date Based (choose dates below)</option>
 	<option value="custom">Custom Query</option>
 </select>
 <br /><br />
