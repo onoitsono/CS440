@@ -22,3 +22,11 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+
+.showtoggle{
+	display:none;
+}
+
+.hidetoggle{
+	display:inline-block;
+}

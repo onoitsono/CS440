@@ -1,83 +1,8 @@
 <?php
 	include "acctfunctions.inc";
 	define('NUMROWS', 30);
-
-	if (isset($_POST['pickup-submit'])) {
-		$name = htmlspecialchars($_POST['name']);
-		$firstname = htmlspecialchars($_POST['first_name']);
-		$department = htmlspecialchars($_POST['department']);
-		$email = htmlspecialchars($_POST['email']);
-		$requestor_login = htmlspecialchars($_POST['requestor_login']);
-		$numberOfItems = 0;
-		$buildingRoom = htmlspecialchars($_POST['building-room']);
-		$notes = htmlspecialchars($_POST['notes']);
-		$items = "";
-		$itemDescriptions = $_POST['Item_Description'];
-		$inventoryIDs = $_POST['Inventory_ID'];
-		$Serial_Nums = $_POST['Serial_Number'];
-		$Item_Types = $_POST['Item_Type'];
-		$Return_Types = $_POST['Item_Return_Type'];
-			 
-		while ($itemDescriptions[$numberOfItems] != "") {
-			$items .= "<strong>Item Description: </strong>$itemDescriptions[$numberOfItems]<br>";
-			if ($inventoryIDs[$numberOfItems] != ""){
-				$items .= "<strong>Inventory ID: </strong>$inventoryIDs[$numberOfItems]<br>";
-			}
-			if ($Serial_Nums[$numberOfItems] != "" ){
-				$items .= "<strong>Serial Number: </strong>$Serial_Nums[$numberOfItems]<br>";
-			}
-			if ($Item_Types[$numberOfItems] != ""){
-				$items .= "<strong>Item Type: </strong>$Item_Types[$numberOfItems]<br>";
-			}
-			if ($Return_Types[$numberOfItems] != ""){
-				$needReturned = $Return_Types[$numberOfItems];
-				if($needReturned == "Yes"){
-					$items .= "<strong>Need Returned: </strong><font color = \"red\">$needReturned</font><br><br>";
-				}
-				else{
-					$items .= "<strong>Need Returned: </strong>$needReturned<br><br>";
-				}
-			}
-			$numberOfItems++;
-		}
-
-		$to = 'cn.help@oregonstate.edu';
-		$subject = 'Hardware Pickup Request';
-		
-		$headers =  "MIME-Version: 1.0\r\n";
-		$headers .= 'From: "' . $name . '" <' . $email . '>' . "\r\n";
-		$headers .= "Content-Type: text/html; charset='iso-8859-1'";
-		$headers .=	"Content-Transfer-Encoding: 7bit\r\n\r\n";
-
-		$output = "<strong>Name: </strong> $name<br>
-		<strong>Authenticated User: </strong> $requestor_login<br>
-		<strong>Department: </strong> $department<br>
-		<strong>Email: </strong> $email<br><br>
-		<strong>Number of Items: </strong> $numberOfItems<br>
-		<strong>Pickup Location: </strong> $buildingRoom<br>
-		<strong>Notes: </strong> $notes<br><br>" . 
-		$items;
-		
-		mail($to, $subject, $output, $headers);
-
-		$to2 = $email;
-		
-		$headers2 = "MIME-Version: 1.0\r\n";
-		$headers2 .= 'From: "Community Network" <cn.help@oregonstate.edu>'."\r\n";
-		$headers2 .= "Content-Type: text/html; charset='iso-8859-1'";
-		$headers2 .=	"Content-Transfer-Encoding: 7bit\r\n\r\n";
-		
-		$cusout = "$firstname,<br><br>Thank you for submitting your Hardware Pick-Up Request to The Community Network.<br><br>
-		We will contact you soon to schedule an appointment for a technician to pick up the items that have been submitted.  Please label all items so it is clear what we are picking up and what we are not.<br><br>
-		Thank You,<br><br>
-		Your Community Network Support Team<br>
-		Cn.help@oregonstate.edu<br>
-		541-737-8788 Option 2<br>";
-		
-		mail($to2, $subject, $cusout, $headers2);
-		
-		$message = "<p style='color: #4e7300'>Request Submitted Succesfully!</p>";
-	}
+	include "ajax-example.php";
+	
 ?>
 
 <!doctype html>
@@ -272,72 +197,74 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
     	</table>
     </p>
 	
-	<form name='weatherform'>
-	<?php
-	//dynamically populate the location dropdown based on our table
-	$dbhost = "mysql.cs.orst.edu";
-	$dbuser = "cs440_onok";
-	$dbpass = "3216";
-	$dbname = "cs440_onok";
-	//Connect to MySQL Server
-	mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
-	//Select Database
-	mysql_select_db($dbname) or die(mysql_error());
-	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
-	$qry_result = mysql_query($query) or die(mysql_error());
-	
-	echo "Location: <select id='location'>";
-	 while($row = mysql_fetch_array($qry_result)){
-	 	echo "<option value=$row[table_name]>$row[location_name]</option>";
-	 }
-	echo "</select>";
-?>
+	<form name='weatherform' >
+		<div id="queries">
+			<div id="queryoptions" style="display:inline-block;" >
+				<label for="queryoption">Query options:</label>
+				<select onchange="javascript:queryoption1()" id="queryoption">
+					<option value="">Please select an option</option>
+					<option value="max">Max Temperature</option>
+					<option value="min">Min Temperature</option>
+					<option value="avg">Average Temperature</option>
+					<option value="snow">Find Snow Days</option>
+					<option disabled="disabled">----</option>
+					<option value="maxstate">Max Temperature for State</option>
+					<option value="minstate">Min Temperature for State</option>
+					<option disabled="disabled">----</option>
+					<option value="datebased">Date Based (choose dates below)</option>
+					<option value="custom">Custom Query</option>
+				</select>
+			</div>
+			<div id="location_options" class="showtoggle" >
+				<?php
+					// Gets locations to display/select
+					$qry_result = get_locations();
+					echo "<label for='location'>Locations:</label><select id='location'>";
+					while($row = mysql_fetch_array($qry_result)){
+						echo "<option value=$row[table_name]>$row[location_name]</option>";
+					}
+					echo "</select>";
+				?>
+			</div>
+			<div id="custom" class="showtoggle">
+				<label for="customsearch">Find</label> 
+				<select id="customsearch">
+					<option value="temp">Temperature (F)</option>
+					<option value="rain">Hourly Rainfall (in.)</option>
+					<option value="snow">Snow Depth (in.)</option>
+					<option value="wind">Wind Speed (mph)</option>
+					<option value="visb">Visibility (miles)</option>
+				</select>
+				<select id="minormax">
+					<option value="max">less than</option>
+					<option value="min">greater than</option>
+					<option value="equal">equal to</option>
+				</select>
+				<input type='text' id='customval' /> for the following date range (if left blank, will search all records):
+			</div>
+			<div id="dates" >
+				<label for="date">Please specify starting and end dates:</label>
+				<br />
+				Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker " /><br />
+				End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker " /><br />
+				<label for="datebased">If you chose date-based, pick a sub-option:</label>
+				<select id="datequeryoption">
+					<option value="maxd">Max Temperature</option>
+					<option value="mind">Min Temperature</option>
+					<option value="avgd">Average Temperature</option>
+					<option value="datedump">All Information</option>
+					<!-- <option value="maxstate">Max Temperature for State</option> -->
+				</select>
+			</div>
+		</div>
+		
 
-Please choose an option: <select id="queryoption">
-	<option value="max">Max Temperature</option>
-	<option value="min">Min Temperature</option>
-	<option value="avg">Average Temperature</option>
-	<option value="snow">Find Snow Days</option>
-	<option disabled="disabled">----</option>
-	<option value="maxstate">Max Temperature for State</option>
-	<option value="minstate">Min Temperature for State</option>
-	<option disabled="disabled">----</option>
-	<option value="datebased">Date Based (choose dates below)</option>
-	<option value="custom">Custom Query</option>
-</select>
-<br /><br />
+
+
 
 <!-- custom search functionality -->
-Find 
-<select id="customsearch">
-	<option value="temp">Temperature (F)</option>
-	<option value="rain">Hourly Rainfall (in.)</option>
-	<option value="snow">Snow Depth (in.)</option>
-	<option value="wind">Wind Speed (mph)</option>
-	<option value="visb">Visibility (miles)</option>
-</select>
-<select id="minormax">
-<option value="max">less than</option>
-<option value="min">greater than</option>
-</select>
-<input type='text' id='customval' /> for the following date range (if left blank, will search all records):
-<br />
-<br />
-
-Please specify starting and end dates for date-based queries:
-<br />
-Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
-End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
 
 
-If you chose date-based, pick a sub-option:
-<select id="datequeryoption">
-	<option value="maxd">Max Temperature</option>
-	<option value="mind">Min Temperature</option>
-	<option value="avgd">Average Temperature</option>
-	<option value="datedump">All Information</option>
-	<!-- <option value="maxstate">Max Temperature for State</option> -->
-</select>
 
 
 

@@ -17,6 +17,12 @@ echo "The query option is " .$queryoption. "<br />";
 // $enddate = $_GET['enddate'];
 // $enddate = mysql_real_escape_string($enddate);
 
+function get_locations(){
+	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
+	$result = mysql_query($query) or die(mysql_error());
+	return $result;
+}
+
 //average temperature
 if($queryoption == "avg"){
 	$location = $_GET['location'];
