@@ -317,8 +317,8 @@ Find
 	<option value="visb">Visibility (miles)</option>
 </select>
 <select id="minormax">
-<option value="max">less than</option>
-<option value="min">greater than</option>
+<option value="max">less than or equal to</option>
+<option value="min">greater than or equal to</option>
 </select>
 <input type='text' id='customval' /> for the following date range (if left blank, will search all records):
 <br />
@@ -497,12 +497,15 @@ function ajaxFunction(){
  var startdate = document.getElementById('startdate').value;
  var enddate = document.getElementById('enddate').value;
  var datequery = document.getElementById('datequeryoption').value;
- 
+ var customsearch = document.getElementById('customsearch').value;
+ var minormax = document.getElementById('minormax').value;
+  
  var queryString = "?location=" + location ;
  queryString +=  "&customval=" + customval + "&queryoption=" + queryoption;
- alert(queryString);
+ //alert(queryString);
  queryString += "&startdate=" + startdate + "&enddate=" + enddate;
- queryString += "&datequery=" + datequery;
+ queryString += "&datequery=" + datequery + "&customsearch=" + customsearch;
+ queryString += "&minormax=" + minormax;
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 
