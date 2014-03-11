@@ -291,21 +291,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="name">Name<span class="form-required" title="This field is required.">*</span></label>
-<<<<<<< HEAD
-	<?php //echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
-</div>
 
-<div class="form-item webform-component webform-component-textfield">
-	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
-	<?php //echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
-</div>
-=======
-	<?php echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
-
-<div class="form-item webform-component webform-component-textfield">
-	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
-<?php echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
->>>>>>> onok
 
 <!~~<div class="form-item webform-component webform-component-textfield">
 	<label for="email">Email<span class="form-required" title="This field is required.">*</span></label>
