@@ -1,7 +1,4 @@
 #!/bin/sh
-git add .
-git commit -m "testing"
-git push origin onok
 git reset --hard HEAD
-git pull origin onok
+git pull origin TBranch
 chmod -c -R 0755 ./*
