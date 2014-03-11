@@ -21,8 +21,32 @@ jQuery(function($)
 	}, function() {
 		$(this).next('span').fadeOut(200);
 	});
+	
+	$('#queryoption').change(function(){
+		if(($('#queryoption').val() != 'custom')){
+			$('#location_options').removeClass("hidetoggle");
+			$('#location_options').addClass("showtoggle");
+			$('#custom').removeClass("hidetoggle");
+			$('#custom').addClass("showtoggle");
+		}
+		if(($('#queryoption').val() != 'maxstate') || ($('#queryoption').val() != 'minstate') || ($('#queryoption').val() != '')){
+			 $('#location_options').removeClass("showtoggle");
+			 $('#location_options').addClass("hidetoggle");
+		} 
+		if(($('#queryoption').val() == 'maxstate') || ($('#queryoption').val() == 'minstate') || ($('#queryoption').val() == '')){
+			 $('#location_options').removeClass("hidetoggle");
+			 $('#location_options').addClass("showtoggle");
+		}
+		if(($('#queryoption').val() == 'custom')){
+			$('#location_options').removeClass("showtoggle");
+			$('#location_options').addClass("hidetoggle");
+			$('#custom').removeClass("showtoggle");
+			$('#custom').addClass("hidetoggle");
+		}
+		
+		
+	});
 });
-
 /*
  * highlight required fields
  */

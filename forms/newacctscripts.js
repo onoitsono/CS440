@@ -90,7 +90,7 @@ jQuery(function($)
 		var errors = $(this).parent().children('div.error').length;
 		if (diff <= 3 && errors === 0)
 		{
-			var message = "<div class='error'>You have selected a date that provides less than three business days lead time for account creation. While we will make every effort to have the account created quickly, please follow up with us via phone at (541) 737-8787 (Option #2) after submitting the request if this is a rush.</div><br>";
+			//var message = "<div class='error'>You have selected a date that provides less than three business days lead time for account creation. While we will make every effort to have the account created quickly, please follow up with us via phone at (541) 737-8787 (Option #2) after submitting the request if this is a rush.</div><br>";
 			$(this).parent().append(message);
 		}
 		else if (diff > 3 && errors !== 0)

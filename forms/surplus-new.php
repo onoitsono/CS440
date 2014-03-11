@@ -1,83 +1,8 @@
 <?php
 	include "acctfunctions.inc";
 	define('NUMROWS', 30);
-
-	if (isset($_POST['pickup-submit'])) {
-		$name = htmlspecialchars($_POST['name']);
-		$firstname = htmlspecialchars($_POST['first_name']);
-		$department = htmlspecialchars($_POST['department']);
-		$email = htmlspecialchars($_POST['email']);
-		$requestor_login = htmlspecialchars($_POST['requestor_login']);
-		$numberOfItems = 0;
-		$buildingRoom = htmlspecialchars($_POST['building-room']);
-		$notes = htmlspecialchars($_POST['notes']);
-		$items = "";
-		$itemDescriptions = $_POST['Item_Description'];
-		$inventoryIDs = $_POST['Inventory_ID'];
-		$Serial_Nums = $_POST['Serial_Number'];
-		$Item_Types = $_POST['Item_Type'];
-		$Return_Types = $_POST['Item_Return_Type'];
-			 
-		while ($itemDescriptions[$numberOfItems] != "") {
-			$items .= "<strong>Item Description: </strong>$itemDescriptions[$numberOfItems]<br>";
-			if ($inventoryIDs[$numberOfItems] != ""){
-				$items .= "<strong>Inventory ID: </strong>$inventoryIDs[$numberOfItems]<br>";
-			}
-			if ($Serial_Nums[$numberOfItems] != "" ){
-				$items .= "<strong>Serial Number: </strong>$Serial_Nums[$numberOfItems]<br>";
-			}
-			if ($Item_Types[$numberOfItems] != ""){
-				$items .= "<strong>Item Type: </strong>$Item_Types[$numberOfItems]<br>";
-			}
-			if ($Return_Types[$numberOfItems] != ""){
-				$needReturned = $Return_Types[$numberOfItems];
-				if($needReturned == "Yes"){
-					$items .= "<strong>Need Returned: </strong><font color = \"red\">$needReturned</font><br><br>";
-				}
-				else{
-					$items .= "<strong>Need Returned: </strong>$needReturned<br><br>";
-				}
-			}
-			$numberOfItems++;
-		}
-
-		$to = 'cn.help@oregonstate.edu';
-		$subject = 'Hardware Pickup Request';
-		
-		$headers =  "MIME-Version: 1.0\r\n";
-		$headers .= 'From: "' . $name . '" <' . $email . '>' . "\r\n";
-		$headers .= "Content-Type: text/html; charset='iso-8859-1'";
-		$headers .=	"Content-Transfer-Encoding: 7bit\r\n\r\n";
-
-		$output = "<strong>Name: </strong> $name<br>
-		<strong>Authenticated User: </strong> $requestor_login<br>
-		<strong>Department: </strong> $department<br>
-		<strong>Email: </strong> $email<br><br>
-		<strong>Number of Items: </strong> $numberOfItems<br>
-		<strong>Pickup Location: </strong> $buildingRoom<br>
-		<strong>Notes: </strong> $notes<br><br>" . 
-		$items;
-		
-		mail($to, $subject, $output, $headers);
-
-		$to2 = $email;
-		
-		$headers2 = "MIME-Version: 1.0\r\n";
-		$headers2 .= 'From: "Community Network" <cn.help@oregonstate.edu>'."\r\n";
-		$headers2 .= "Content-Type: text/html; charset='iso-8859-1'";
-		$headers2 .=	"Content-Transfer-Encoding: 7bit\r\n\r\n";
-		
-		$cusout = "$firstname,<br><br>Thank you for submitting your Hardware Pick-Up Request to The Community Network.<br><br>
-		We will contact you soon to schedule an appointment for a technician to pick up the items that have been submitted.  Please label all items so it is clear what we are picking up and what we are not.<br><br>
-		Thank You,<br><br>
-		Your Community Network Support Team<br>
-		Cn.help@oregonstate.edu<br>
-		541-737-8788 Option 2<br>";
-		
-		mail($to2, $subject, $cusout, $headers2);
-		
-		$message = "<p style='color: #4e7300'>Request Submitted Succesfully!</p>";
-	}
+	include "ajax-example.php";
+	
 ?>
 
 <!doctype html>
@@ -89,7 +14,7 @@
 	<link rel="shortcut icon" href="http://oregonstate.edu/is/sites/all/themes/osu_standard/favicon.ico" type="image/vnd.microsoft.icon" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Hardware Pick-up Request | Community Network</title>
+    <title>CS 440 | NOAA Weather Database</title>
  
   <!-- CSS -->
 	<style type="text/css" media="all">
@@ -209,7 +134,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 
   <!-- Site Name -->
   <div id='header' class='row-fluid'>
-    <h1><a href='http://oregonstate.edu/is/tss/cn/online-forms'>SUPER HAPPY FUN TIME!</h1>
+    <h1><a href='http://oregonstate.edu/is/tss/cn/online-forms'>NOAA Weather Database</h1>
   </div>
  
     
@@ -237,7 +162,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
             <!-- Pre-content -->
             
             <!-- Main Content -->
-            <h2 class="title" id="page-title">Community Network Hardware Pick-up Request</h2>
+            <h2 class="title" id="page-title">NOAA Database Request</h2>
               
               
               <div id='content' >
@@ -254,34 +179,99 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 
 	<?php echo $message; ?>
 
-    <p class="descr-text">Please fill out the form below to surplus OSU-owned computer hardware that is no longer useful to your department.  
-    	By submitting the form below, a ticket will be created and CN will arrange for a technician to pick up the requested hardware from the building and room listed.
+    <p class="descr-text">Please fill out the form below with your request from the database.
     </p>
     <p class="descr-text">
-    	<strong>Only these Items will be picked up:</strong><br>
+    	<strong>The following requests are possible:</strong><br>
     	<table style="background-color:#fff;width:45%">
     		<tr style="vertical-align:top;">
     			<td>
     				<ul>
-    					<li>Computer Towers</li>
-    					<li>Monitors</li>
-    					<li>Hard Drives (external and internal)</li>
-    					<li>Keyboards and Mice</li>
-    				</ul>
-    			</td>
-    			<td>
-    				<ul>
-    					<li>Laptops</li>
-    					<li>Docking Stations</li>
-    					<li>Computer Cables</li>
+    					<li>Temperatures (High and low)</li>
+    					<li>Rainfall</li>
+    					<li>Pressure</li>
+    					<li>Other</li>
     				</ul>
     			</td>
     		</tr>
     	</table>
     </p>
 	
+	<form name='weatherform' >
+		<div id="queries">
+			<div id="queryoptions" style="display:inline-block;" >
+				<label for="queryoption">Query options:</label>
+				<select onchange="javascript:queryoption1()" id="queryoption">
+					<option value="">Please select an option</option>
+					<option value="max">Max Temperature</option>
+					<option value="min">Min Temperature</option>
+					<option value="avg">Average Temperature</option>
+					<option value="snow">Find Snow Days</option>
+					<option disabled="disabled">----</option>
+					<option value="maxstate">Max Temperature for State</option>
+					<option value="minstate">Min Temperature for State</option>
+					<option disabled="disabled">----</option>
+					<option value="datebased">Date Based (choose dates below)</option>
+					<option value="custom">Custom Query</option>
+				</select>
+			</div>
+			<div id="location_options" class="showtoggle" >
+				<?php
+					// Gets locations to display/select
+					$qry_result = get_locations();
+					echo "<label for='location'>Locations:</label><select id='location'>";
+					while($row = mysql_fetch_array($qry_result)){
+						echo "<option value=$row[table_name]>$row[location_name]</option>";
+					}
+					echo "</select>";
+				?>
+			</div>
+			<div id="custom" class="showtoggle">
+				<label for="customsearch">Find</label> 
+				<select id="customsearch">
+					<option value="temp">Temperature (F)</option>
+					<option value="rain">Hourly Rainfall (in.)</option>
+					<option value="snow">Snow Depth (in.)</option>
+					<option value="wind">Wind Speed (mph)</option>
+					<option value="visb">Visibility (miles)</option>
+				</select>
+				<select id="minormax">
+					<option value="max">less than</option>
+					<option value="min">greater than</option>
+					<option value="equal">equal to</option>
+				</select>
+				<input type='text' id='customval' /> for the following date range (if left blank, will search all records):
+			</div>
+			<div id="dates" >
+				<label for="date">Please specify starting and end dates:</label>
+				<br />
+				Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker " /><br />
+				End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker " /><br />
+				<label for="datebased">If you chose date-based, pick a sub-option:</label>
+				<select id="datequeryoption">
+					<option value="maxd">Max Temperature</option>
+					<option value="mind">Min Temperature</option>
+					<option value="avgd">Average Temperature</option>
+					<option value="datedump">All Information</option>
+					<!-- <option value="maxstate">Max Temperature for State</option> -->
+				</select>
+			</div>
+		</div>
+		
+
+
+
+
+<!-- custom search functionality -->
+
+
+
+
+
+<!--
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
+<!~~ 
 <?php
 	/*//get user account info
 	$reqinfo = get_userinfo($_SERVER['AUTH_USER'], "sAMAccountName"); // LDAP query for requestor info
@@ -297,9 +287,11 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	echo '<input type="hidden" id="requestor_login" name="requestor_login" value="' . $_SERVER['AUTH_USER'] . '">';
 	echo '<input type="hidden" id="first_name" name="first_name" value="' . $first_name . '">';*/
 ?>
+ ~~>
 
 <div class="form-item webform-component webform-component-textfield">
 	<label for="name">Name<span class="form-required" title="This field is required.">*</span></label>
+<<<<<<< HEAD
 	<?php //echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
 </div>
 
@@ -307,28 +299,31 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
 	<?php //echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
 </div>
+=======
+	<?php echo '<input type="text" id="name" name="name" value="'.$drn.'" size="70" class="requiredField">';?>
 
-<!--<div class="form-item webform-component webform-component-textfield">
+<div class="form-item webform-component webform-component-textfield">
+	<label for="department">Department<span class="form-required" title="This field is required.">*</span></label>
+<?php echo '<input type="text" id="department" name="department" value="'.$requestor_department.'" size="70" class="requiredField">';?>
+>>>>>>> onok
+
+<!~~<div class="form-item webform-component webform-component-textfield">
 	<label for="email">Email<span class="form-required" title="This field is required.">*</span></label>
 	<?php //echo '<input type="hidden" id="email" name="email" value="" size="70" class="email-autocomplete">';
 			echo '<input type="hidden" id="email" name="email" value=" ' .$dre. ' " size="70" >';
 	?>
-</div>-->
+</div>~~>
 
 <div class="form-item webform-component webform-component-select"> 
-		  <!-- ITEMS -->
+		  <!~~ ITEMS ~~>
 	<div class='sectionTable' id='sectionItems'>
-	<div class='sectionHeading'>Items</div>
+	<div class='sectionHeading'>Weather</div>
 
 	<select class='selector input_id_Item_Row' id='selectItemType'>
 <?php
-  $defaultitemlist = array(array('Computer', 'Tower/Desktop'),
-                           array('Computer', 'Laptop'), 
-                           array('Accessory', 'Keyboard or Mouse'),
-                           array('Peripheral', 'Docking Station'), 
-                           array('Peripheral', 'Monitor'),
-                           array('Accessory', 'Cables'), 
-                           array('Peripheral', 'Hard drive (Internal or External)'));
+  $defaultitemlist = array(array('Temperature', 'Max'),
+                           array('Temperature', 'Min'), 
+                           array('Temperature', 'Average'));
 
   foreach ($defaultitemlist as $defaultitem) {
     $category = $defaultitem[0];
@@ -342,7 +337,8 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 		<input type='button' class='input_id_Item_Row' style='float:right' onclick="AddToList('id_Item_Row', 'Item_Return_Type', '', 'Item_Description', '', 'Inventory_ID', '', 'Serial_Number', ''); return false" value="Add Custom Item">
 		<br><br>
 
-		<table class='itemlisttable' border='0' cellspacing='0' style='width:100%' id='itemsTable'>
+		 <!~~ 
+<table class='itemlisttable' border='0' cellspacing='0' style='width:100%' id='itemsTable'>
 			  <tr>	
 					<th width='8%'><a class="hasTooltip">Return</a><span>
 						<ul>Yes means that you would like the device returned to you after being wiped.</ul>
@@ -352,7 +348,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 					<th width='37%'><a class="hasTooltip">Description</a><span>Enter a description or use the Items dropdown to select a pre-made item from the list.</span></th>
 					<th width='15%'><a class="hasTooltip">Inventory ID</a><span>If the device has an inventory ID number on it, please fill it in as it will help us to identify the device in our system.</span></th>
 					<th width='20%'><a class="hasTooltip">Serial Number</a><span>For devices that have a serial number, please enter the number in the field below.</span></th>
-					<!--<th width='14%'>Item Type</th>-->
+					<!~~ <th width='14%'>Item Type</th> ~~>
 					<th width='6%'><a class="hasTooltip"><img size='100%' src='images/delete16.png'></a><span>Click on the X next to an item to remove it from the list.</span></th>
 			  </tr>
 
@@ -360,29 +356,32 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 		  for ($pc = 0; $pc < NUMROWS; ++$pc) {
 		?>
 			  <tr style='display:none;' id="id_Item_Row<?php echo $pc;?>">
-				<td style='width:8%'>
+				<!~~<td style='width:8%'>
 				  <select class='selector' style='width:100%' id="id_Item_Return_Type_<?php echo $pc;?>" name='Item_Return_Type[]'>
 					<option value="">&nbsp;</option>
 					<option value="Yes">Yes, return to me.</option>
 					<option value="No">Don't return to me.</option>
 				  </select>
-				</td>
+				</td>~~>
 				<td width='37%'><input type='text' style='width:95%' id="id_Item_Description_<?php echo $pc;?>" name='Item_Description[]' maxlength='54' class='requiredField'></td>
 				<td width='15%'><input type='text' style='width:90%' id="id_Inventory_ID_<?php echo $pc;?>" name='Inventory_ID[]' maxlength='30'></td>
 				<td width='20%'><input type='text' style='width:95%' id="id_Serial_Number_<?php echo $pc;?>" name='Serial_Number[]' maxlength='30'></td>
-				<!--<td width='14%'><input type='text' style='width:90%' id="id_Item_Type_<?php echo $pc;?>" name='Item_Type[]' maxlength='30'></td>-->
+				<!~~<td width='14%'><input type='text' style='width:90%' id="id_Item_Type_<?php echo $pc;?>" name='Item_Type[]' maxlength='30'></td>~~>
 				<td width='6%'><center><img class="removeItem" style='width:50%' src='images/delete16.png' onclick="RemoveFromList('id_Item_Row', <?php echo $pc;?>,'Item_Return_Type','Item_Description','Inventory_ID','Serial_Number')"/><center></td>
 			  </tr>
 			  
 		<?php } ?>
 		</table>
+ ~~>
 	</div>
 
 
 </div>
 
+ -->
 
-<div class="form-item webform-component webform-component-textfield">
+
+<!-- <div class="form-item webform-component webform-component-textfield">
 	<label for="building-room">Pick up location (Building & Room):</label>
 	<input type="text" id="building-room" name="building-room" value="" size="70" class='requiredField'>
 </div>
@@ -394,13 +393,64 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	<div class="form-textarea-wrapper resizable">
 		<textarea id="notes" name="notes" cols="3" rows"5" class="form-textarea"></textarea>
 	</div>
-</div>
+</div> -->
+
 
 <div class="form-actions form-wrapper" id="edit-actions">
-	<input type="submit" id="pickup-submit" name="pickup-submit" value="Submit to Community Network" class="form-submit">
+
+<script language="javascript" type="text/javascript">
+function ajaxFunction(){
+ var ajaxRequest;  // The variable that makes Ajax possible!
+	
+ try{
+   // Opera 8.0+, Firefox, Safari
+   ajaxRequest = new XMLHttpRequest();
+ }catch (e){
+   // Internet Explorer Browsers
+   try{
+      ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+   }catch (e) {
+      try{
+         ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+      }catch (e){
+         // Something went wrong
+         alert("Your browser broke!");
+         return false;
+      }
+   }
+ }
+ // Create a function that will receive data 
+ // sent from the server and will update
+ // div section in the same page.
+ ajaxRequest.onreadystatechange = function(){
+   if(ajaxRequest.readyState == 4){
+      var ajaxDisplay = document.getElementById('ajaxDiv');
+      ajaxDisplay.innerHTML = ajaxRequest.responseText;
+   }
+ }
+ var location = document.getElementById('location').value;
+ var customval = document.getElementById('customval').value;
+ var queryoption = document.getElementById('queryoption').value;
+ var startdate = document.getElementById('startdate').value;
+ var enddate = document.getElementById('enddate').value;
+ var datequery = document.getElementById('datequeryoption').value;
+ 
+ var queryString = "?location=" + location ;
+ queryString +=  "&customval=" + customval + "&queryoption=" + queryoption;
+ alert(queryString);
+ queryString += "&startdate=" + startdate + "&enddate=" + enddate;
+ queryString += "&datequery=" + datequery;
+ ajaxRequest.open("GET", "ajax-example.php" + 
+                              queryString, true);
+ ajaxRequest.send(null); 
+ }
+	</script>
+	<input type="button" onclick='ajaxFunction()' value="Submit SQL Query" >
+	<!--class="form-submit"id="pickup-submit" name="pickup-submit" -->
 </div>
 </div>
 </form>  
+<div id='ajaxDiv'>Your result will display here</div>
 </div>
 </div>
   </div>
@@ -435,22 +485,22 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
           <div class='span4 contact'>
             <h3>Information Services</h3>
             <div class="specific-contact">
-              <p><a href="http://oregonstate.edu/is">Information Services Home Page</a><br /><a href="http://oregonstate.edu/is/organization">Organization</a></p>
+              <p><a href="http://oregonstate.edu/">Information Services Home Page</a><br /><a href="http://eecs.oregonstate.edu/">Oregon State School of EECS</a></p>
             </div>
             <div class="general-contact">
               <a href="http://oregonstate.edu/copyright">Copyright</a>
-              &copy;2013              Oregon State University<br />
-              <a href="http://oregonstate.edu/disclaimer">Disclaimer</a>
+              &copy;2014              Oregon State University<br />
+             <!-- <a href="http://oregonstate.edu/disclaimer">Disclaimer</a> -->
             </div>
              <div class="social-media"></div>
           </div>
-          <div class='span4'>
+          <!-- <div class='span4'>
             <h3>Community Network</h3>
             <div class="specific-contact">
               <p><a href="http://oregonstate.edu/is/tss/cn">Community Network Home Page</a><br />
               541-737-8787</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
