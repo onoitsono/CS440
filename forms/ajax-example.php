@@ -16,7 +16,11 @@ echo "The query option is " .$queryoption. "<br />";
 // $startdate = mysql_real_escape_string($startdate);
 // $enddate = $_GET['enddate'];
 // $enddate = mysql_real_escape_string($enddate);
-
+function get_locations(){
+	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
+	$result = mysql_query($query) or die(mysql_error());
+	return $result;
+}
 
 if($queryoption == "avg"){
 	$location = $_GET['location'];

@@ -1,83 +1,9 @@
 <?php
 	include "acctfunctions.inc";
+	include "ajax-example.php";
 	define('NUMROWS', 30);
 
-	if (isset($_POST['pickup-submit'])) {
-		$name = htmlspecialchars($_POST['name']);
-		$firstname = htmlspecialchars($_POST['first_name']);
-		$department = htmlspecialchars($_POST['department']);
-		$email = htmlspecialchars($_POST['email']);
-		$requestor_login = htmlspecialchars($_POST['requestor_login']);
-		$numberOfItems = 0;
-		$buildingRoom = htmlspecialchars($_POST['building-room']);
-		$notes = htmlspecialchars($_POST['notes']);
-		$items = "";
-		$itemDescriptions = $_POST['Item_Description'];
-		$inventoryIDs = $_POST['Inventory_ID'];
-		$Serial_Nums = $_POST['Serial_Number'];
-		$Item_Types = $_POST['Item_Type'];
-		$Return_Types = $_POST['Item_Return_Type'];
-			 
-		while ($itemDescriptions[$numberOfItems] != "") {
-			$items .= "<strong>Item Description: </strong>$itemDescriptions[$numberOfItems]<br>";
-			if ($inventoryIDs[$numberOfItems] != ""){
-				$items .= "<strong>Inventory ID: </strong>$inventoryIDs[$numberOfItems]<br>";
-			}
-			if ($Serial_Nums[$numberOfItems] != "" ){
-				$items .= "<strong>Serial Number: </strong>$Serial_Nums[$numberOfItems]<br>";
-			}
-			if ($Item_Types[$numberOfItems] != ""){
-				$items .= "<strong>Item Type: </strong>$Item_Types[$numberOfItems]<br>";
-			}
-			if ($Return_Types[$numberOfItems] != ""){
-				$needReturned = $Return_Types[$numberOfItems];
-				if($needReturned == "Yes"){
-					$items .= "<strong>Need Returned: </strong><font color = \"red\">$needReturned</font><br><br>";
-				}
-				else{
-					$items .= "<strong>Need Returned: </strong>$needReturned<br><br>";
-				}
-			}
-			$numberOfItems++;
-		}
 
-		$to = 'cn.help@oregonstate.edu';
-		$subject = 'Hardware Pickup Request';
-		
-		$headers =  "MIME-Version: 1.0\r\n";
-		$headers .= 'From: "' . $name . '" <' . $email . '>' . "\r\n";
-		$headers .= "Content-Type: text/html; charset='iso-8859-1'";
-		$headers .=	"Content-Transfer-Encoding: 7bit\r\n\r\n";
-
-		$output = "<strong>Name: </strong> $name<br>
-		<strong>Authenticated User: </strong> $requestor_login<br>
-		<strong>Department: </strong> $department<br>
-		<strong>Email: </strong> $email<br><br>
-		<strong>Number of Items: </strong> $numberOfItems<br>
-		<strong>Pickup Location: </strong> $buildingRoom<br>
-		<strong>Notes: </strong> $notes<br><br>" . 
-		$items;
-		
-		mail($to, $subject, $output, $headers);
-
-		$to2 = $email;
-		
-		$headers2 = "MIME-Version: 1.0\r\n";
-		$headers2 .= 'From: "Community Network" <cn.help@oregonstate.edu>'."\r\n";
-		$headers2 .= "Content-Type: text/html; charset='iso-8859-1'";
-		$headers2 .=	"Content-Transfer-Encoding: 7bit\r\n\r\n";
-		
-		$cusout = "$firstname,<br><br>Thank you for submitting your Hardware Pick-Up Request to The Community Network.<br><br>
-		We will contact you soon to schedule an appointment for a technician to pick up the items that have been submitted.  Please label all items so it is clear what we are picking up and what we are not.<br><br>
-		Thank You,<br><br>
-		Your Community Network Support Team<br>
-		Cn.help@oregonstate.edu<br>
-		541-737-8788 Option 2<br>";
-		
-		mail($to2, $subject, $cusout, $headers2);
-		
-		$message = "<p style='color: #4e7300'>Request Submitted Succesfully!</p>";
-	}
 ?>
 
 <!doctype html>
@@ -274,22 +200,12 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 	
 	<form name='weatherform'>
 	<?php
-	//dynamically populate the location dropdown based on our table
-	$dbhost = "mysql.cs.orst.edu";
-	$dbuser = "cs440_onok";
-	$dbpass = "3216";
-	$dbname = "cs440_onok";
-	//Connect to MySQL Server
-	mysql_connect($dbhost, $dbuser, $dbpass) or die(mysql_error());
-	//Select Database
-	mysql_select_db($dbname) or die(mysql_error());
-	$query = "SELECT * FROM Locations ORDER BY location_name ASC";
-	$qry_result = mysql_query($query) or die(mysql_error());
-	
+	// Gets locations to display/select
+	$qry_result = get_locations();
 	echo "Location: <select id='location'>";
-	 while($row = mysql_fetch_array($qry_result)){
-	 	echo "<option value=$row[table_name]>$row[location_name]</option>";
-	 }
+	while($row = mysql_fetch_array($qry_result)){
+		echo "<option value=$row[table_name]>$row[location_name]</option>";
+	}
 	echo "</select>";
 ?>
 
