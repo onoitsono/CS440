@@ -182,15 +182,17 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
     <p class="descr-text">Please fill out the form below with your request from the database.
     </p>
     <p class="descr-text">
-    	<strong>The following requests are possible:</strong><br>
+    	<strong>Function Descriptions:</strong><br>
     	<table style="background-color:#fff;width:45%">
     		<tr style="vertical-align:top;">
     			<td>
     				<ul>
-    					<li>Temperatures (High and low)</li>
-    					<li>Rainfall</li>
-    					<li>Pressure</li>
-    					<li>Other</li>
+    					<li>Temperatures (Max, Min, and Average): Returns highest, lowest, or average temperature for location (and for a date range, if specified.)</li>
+    					<li>Find Snow Days: Will return all records with recorded snowfall (for specified date range, if entered.)</li>
+    					<li>All Info: Returns station ID, timestamp, temperatures, hourly rainfall, windspeed, visibility, and snow depth for specified date range.</li>
+    					<li>Summary: Returns textual summary of the provided date range.</li>
+    					<li>Max/Min Temp for State: Returns highest or lowest temperature for all locations in database.</li>
+    					<li>Custom: run custom searches on locations, either on all the data or for a specified date range.</li>
     				</ul>
     			</td>
     		</tr>
@@ -207,11 +209,12 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 					<option value="min">Min Temperature</option>
 					<option value="avg">Average Temperature</option>
 					<option value="snow">Find Snow Days</option>
+					<option value="datebased">All Information for Range (choose dates below)</option>
+					<option value="summary">Summary for Date Range</option>
 					<option disabled="disabled">----</option>
 					<option value="maxstate">Max Temperature for State</option>
 					<option value="minstate">Min Temperature for State</option>
 					<option disabled="disabled">----</option>
-					<option value="datebased">Date Based (choose dates below)</option>
 					<option value="custom">Custom Query</option>
 				</select>
 			</div>
@@ -243,18 +246,10 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 				<input type='text' id='customval' /> for the following date range (if left blank, will search all records):
 			</div>
 			<div id="dates" >
-				<label for="date">Please specify starting and end dates:</label>
+				<label for="date">If no start or end date is entered, the query will run on all of the data for the location.</label>
 				<br />
 				Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker " /><br />
 				End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker " /><br />
-				<label for="datebased">If you chose date-based, pick a sub-option:</label>
-				<select id="datequeryoption">
-					<option value="maxd">Max Temperature</option>
-					<option value="mind">Min Temperature</option>
-					<option value="avgd">Average Temperature</option>
-					<option value="datedump">All Information</option>
-					<!-- <option value="maxstate">Max Temperature for State</option> -->
-				</select>
 			</div>
 		</div>
 		
@@ -387,7 +382,6 @@ jQuery.extend(Drupal.settings, {"basePath":"\u002Fis\u002F", "pathPrefix":"", "a
 <script language="javascript" type="text/javascript">
 function ajaxFunction(){
  var ajaxRequest;  // The variable that makes Ajax possible!
-	
  try{
    // Opera 8.0+, Firefox, Safari
    ajaxRequest = new XMLHttpRequest();
@@ -415,17 +409,26 @@ function ajaxFunction(){
    }
  }
  var location = document.getElementById('location').value;
+//  alert("location");
  var customval = document.getElementById('customval').value;
+// alert("customval");
  var queryoption = document.getElementById('queryoption').value;
+// alert("queryoption");
  var startdate = document.getElementById('startdate').value;
+// alert("startdate");
  var enddate = document.getElementById('enddate').value;
- var datequery = document.getElementById('datequeryoption').value;
- 
+// alert("enddate");
+ var customsearch = document.getElementById('customsearch').value;
+// alert("customsearch");
+ var minormax = document.getElementById('minormax').value;
+// alert("minormax");
+  
  var queryString = "?location=" + location ;
+  //alert(queryString);
  queryString +=  "&customval=" + customval + "&queryoption=" + queryoption;
- alert(queryString);
  queryString += "&startdate=" + startdate + "&enddate=" + enddate;
- queryString += "&datequery=" + datequery;
+ queryString +=  "&customsearch=" + customsearch;
+ queryString += "&minormax=" + minormax;
  ajaxRequest.open("GET", "ajax-example.php" + 
                               queryString, true);
  ajaxRequest.send(null); 
