@@ -297,24 +297,50 @@ Please choose an option: <select id="queryoption">
 	<option value="max">Max Temperature</option>
 	<option value="min">Min Temperature</option>
 	<option value="avg">Average Temperature</option>
+	<option value="snow">Find Snow Days</option>
+	<option disabled="disabled">----</option>
 	<option value="maxstate">Max Temperature for State</option>
-	<option value="datebased">Date Based</option>
+	<option value="minstate">Min Temperature for State</option>
+	<option disabled="disabled">----</option>
+	<option value="datebased">Date Based (choose dates below)</option>
+	<option value="custom">Custom Query</option>
 </select>
+<br /><br />
+
+<!-- custom search functionality -->
+Find 
+<select id="customsearch">
+	<option value="temp">Temperature (F)</option>
+	<option value="rain">Hourly Rainfall (in.)</option>
+	<option value="snow">Snow Depth (in.)</option>
+	<option value="wind">Wind Speed (mph)</option>
+	<option value="visb">Visibility (miles)</option>
+</select>
+<select id="minormax">
+<option value="max">less than</option>
+<option value="min">greater than</option>
+</select>
+<input type='text' id='customval' /> for the following date range (if left blank, will search all records):
 <br />
-Temp:<input type='text' id='temp' /> <br />
 <br />
+
+Please specify starting and end dates for date-based queries:
+<br />
+Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+
+
 If you chose date-based, pick a sub-option:
 <select id="datequeryoption">
 	<option value="maxd">Max Temperature</option>
 	<option value="mind">Min Temperature</option>
 	<option value="avgd">Average Temperature</option>
+	<option value="datedump">All Information</option>
 	<!-- <option value="maxstate">Max Temperature for State</option> -->
 </select>
-<br />
-Please specify starting and end dates for date-based queries:
-<br />
-Start Date: <input type="text" id="startdate" name="startdate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
-End Date: <input type="text" id="enddate" name="enddate" value="" size="35" maxlength="128" class="form-text required datepicker needdate" /><br />
+
+
+
 <!--
 <form class='webform-client-form' enctype='multipart/form-data' action='surplus-new.php' method='post' id='pickupRequestForm'  accept-charset='UTF-8' autocomplete='off'>
 
@@ -466,15 +492,15 @@ function ajaxFunction(){
    }
  }
  var location = document.getElementById('location').value;
- var temp = document.getElementById('temp').value;
+ var customval = document.getElementById('customval').value;
  var queryoption = document.getElementById('queryoption').value;
  var startdate = document.getElementById('startdate').value;
  var enddate = document.getElementById('enddate').value;
  var datequery = document.getElementById('datequeryoption').value;
  
  var queryString = "?location=" + location ;
- queryString +=  "&temp=" + temp + "&queryoption=" + queryoption;
- //alert(queryString);
+ queryString +=  "&customval=" + customval + "&queryoption=" + queryoption;
+ alert(queryString);
  queryString += "&startdate=" + startdate + "&enddate=" + enddate;
  queryString += "&datequery=" + datequery;
  ajaxRequest.open("GET", "ajax-example.php" + 
